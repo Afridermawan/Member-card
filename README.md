@@ -1,4 +1,5 @@
 ## Slim Skeleton
+Build with slim framework
 
 ## Key directories
 

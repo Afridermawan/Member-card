@@ -1,5 +1,8 @@
 <?php
 
+$phpdotenv = new Dotenv\Dotenv(__DIR__ . '/..');
+$phpdotenv->load();
+
 return [
     'settings' => [
 
@@ -23,11 +26,11 @@ return [
 
         // Elloquent
         'db' => [
-            'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'database'  => 'dbname',
-            'username'  => 'root',
-            'password'  => 'root',
+            'driver'    => $_ENV['DB_DRIVER'],
+            'host'      => $_ENV['DB_HOST'],
+            'database'  => $_ENV['DB_DATABASE'],
+            'username'  => $_ENV['DB_USERNAME'],
+            'password'  => $_ENV['DB_PASSWORD'],
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

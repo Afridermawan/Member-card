@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
 * Sample Model
 */
-class SampleModle extends Model
+class SampleModel extends Model
 {
-
+	// Your Model
 }
