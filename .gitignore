@@ -1,4 +1,5 @@
-vendor/*
 phinx.yml
 composer.lock
 .env
+.vendor/*
+settings.php
