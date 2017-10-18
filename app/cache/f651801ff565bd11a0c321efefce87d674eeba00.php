@@ -10,7 +10,7 @@
 
 <div class="container">
   <div class="row">
-    <form class="col s12" action="<?php echo e($base_url); ?>/web/user/edit/<?php echo e($session->user_id); ?>/profile" method="post">
+    <form class="col s12" action="<?php echo e($base_url); ?>/web/user/edit/<?php echo e($session->id); ?>/profile" method="post">
       <div class="row">
         <div class="input-field col s12">
           <input value="<?php echo e($session->username); ?>" name="username" id="username" type="text" class="validate">
@@ -41,10 +41,9 @@
       </div>
       <div class="row">  
         <div class="input-field col s12">
-          <select name="gender" value="<?php echo e($session->gender); ?>">
-            <option disabled selected>Choose your option</option>
-            <option value="Laki-laki">Laki -laki</option>
-            <option value="Perempuan">Perempuan</option>
+          <select name="gender">
+            <option value="Laki-laki" <?php if( $session->gender == Laki-laki ): ?> selected="selected" <?php endif; ?>>Laki-laki</option>
+            <option value="Perempuan" <?php if( $session->gender == Perempuan ): ?> selected="selected" <?php endif; ?>>Perempuan</option>
           </select>
           <label>Jenis Kelamin</label>
         </div>

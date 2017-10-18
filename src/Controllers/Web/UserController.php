@@ -258,6 +258,8 @@ class UserController extends Controller
         } elseif ($session->role_id == 2) {
             session_destroy();
             return $response->withRedirect($this->router->pathFor('login'));
+        } else {
+            return $response->withRedirect($this->router->pathFor('login'));
         }
     }
 
@@ -284,12 +286,12 @@ class UserController extends Controller
             $result = $e->getResponse();
         }
         $data = json_decode($result->getBody()->getContents());
-// dd($data);
-        if ($data->data->role_id == 2 || $data->data->role_id == 1) {
+
+        if ($data->data->role_id == 2) {
             $_SESSION['login'] = $data->data;
             $_SESSION['key'] = $data->data->token;
 
-            if ($data->data->role_id == 2 || $data->data->role_id == 1) {
+            if ($data->data->role_id == 2) {
                 $this->flash->addMessage('success', $data->message);
                 return $response->withRedirect($this->router->pathFor('home.user'));
             } else {
@@ -297,9 +299,9 @@ class UserController extends Controller
                 'Anda belum terdaftar sebagai user atau akun anda belum diverifikasi');
                 return $response->withRedirect($this->router->pathFor('login'));
             }
-        // } elseif ($data->data->role_id == 1) {
-        //     $this->flash->addMessage('error', 'Maaf, anda bukan user !');
-        //     return $response->withRedirect($this->router->pathFor('login'));
+        } elseif ($data->data->role_id == 1) {
+            $this->flash->addMessage('error', 'Maaf, anda bukan user !');
+            return $response->withRedirect($this->router->pathFor('login'));
         } else {
             $this->flash->addMessage('error', $data->message);
             return $response->withRedirect($this->router->pathFor('login'));
@@ -411,7 +413,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
         $session = $_SESSION['login'];
         try {
-            $result = $this->client->request('GET', 'pin/'.$session->user_id.
+            $result = $this->client->request('GET', 'pin/'.$session->id.
             $request->getUri()->getQuery());
         } catch (GuzzleException $e) {
             $result = $e->getResponse();
@@ -447,7 +449,7 @@ class UserController extends Controller
         $session = $_SESSION['login'];
 
         try {
-            $result = $this->client->request('POST', 'user/'.$session->user_id.'/edit/profile',[
+            $result = $this->client->request('POST', 'user/'.$session->id.'/edit/profile',[
                 'form_params' => [
                     'username'              =>  $request->getParam('username'),
                     'name'                  =>  $request->getParam('name'),
@@ -467,6 +469,7 @@ class UserController extends Controller
             $this->flash->addMessage('error', $data->message);
             return $response->withRedirect($this->router->pathFor('edit.profile'));
         } else {
+            $_SESSION['login'] = $data->data; 
             $this->flash->addMessage('success', $data->message);
             return $response->withRedirect($this->router->pathFor('profile'));
         }

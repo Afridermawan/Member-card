@@ -17,6 +17,8 @@ class CommentTransformer extends Fractal\TransformerAbstract
         $article = Article::find($data->article_id);
         return [
             "id"         => $data->id,
+            'article_id' => $article->id,
+            "user_id"    => $user->id,
             "username"   => $user->username,
             "image"      => $user->image,
             "title" 	 => $article->title,

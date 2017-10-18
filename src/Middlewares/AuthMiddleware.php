@@ -11,7 +11,7 @@ class AuthMiddleware extends BaseMiddleware
     {
         $session = $_SESSION['login'];
 
-        if ($session->role_id == 2 || $session->role_id == 1) {
+        if ($session->role_id == 2) {
             
             $response = $next($request, $response);
 

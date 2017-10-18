@@ -30,14 +30,14 @@
                               <div class="row">
                                  <div class="input-field col s12">
                                     <i class="material-icons prefix">person_outline</i>
-                                    <input name="username" id="firstname" type="text" class="validate">
+                                    <input placeholder="example@gmail.com" name="username" id="firstname" type="text" class="validate">
                                     <label for="username" class="active">Username</label>
                                  </div>
                               </div>
                               <div class="row">
                                  <div class="input-field col s12">
-                                    <i class="material-icons prefix">lock</i>
-                                    <input name="password" id="lastname" type="password" class="validate">
+                                    <i class="material-icons prefix">lock_outline</i>
+                                    <input placeholder="******" name="password" id="lastname" type="password" class="validate">
                                     <label for="password" class="active">Password</label>
                                  </div>
                               </div>

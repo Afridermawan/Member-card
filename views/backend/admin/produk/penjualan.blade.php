@@ -83,7 +83,7 @@
                 @endfor
 
                     @if (isset($page->links->next))
-                    <li><a href="{{$link}}list?page={{$page->current_pages+1}}">>></a></li>
+                    <li><a href="{{$link}}list?page={{$page->current_page+1}}">>></a></li>
                     <li><a href="{{$link}}list?page={{$page->total_pages}}">Last</a></li>
                     @else
                     <li class="disabled"><a>>></a></li>

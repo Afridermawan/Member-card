@@ -20,24 +20,25 @@
     </div>
   </div>
 </div>
-    <?php $__currentLoopData = $comment->data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comments): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-<div class="container">
-  <div class="card"  style="border-radius: 25px">
-    <div class="chip" style="margin: 15px">
-      <img src="<?php echo e($comments->image); ?>" alt="Contact Person">
-      <?php echo e($comments->username); ?>
 
-      <p style="padding-left: 20px"><i class="material-icons prefix">subdirectory_arrow_right</i> <?php echo e($comments->comment); ?></p>
+<?php $__currentLoopData = $comment->data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comments): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+  <div class="container">
+    <div class="card"  style="border-radius: 25px">
+      <div class="chip" style="margin: 15px">
+        <img src="<?php echo e($comments->image); ?>" alt="Contact Person">
+        <?php echo e($comments->username); ?>
+
+        <p style="padding-left: 20px"><i class="material-icons prefix">subdirectory_arrow_right</i> <?php echo $comments->comment; ?></p>
+      </div>
     </div>
   </div>
-</div>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 <div class="container"> 
     <div class="row">
       <div class="input-field col s12">
       <form action="<?php echo e($base_url); ?>/web/article/<?php echo e($data->id); ?>/comment" method="post">
-        <textarea name="comment" id="textarea1" class="materialize-textarea"></textarea>
+        <textarea name="comment" id="textarea1" class="materialize-textarea" placeholder="Tulis Komentar Anda .."></textarea>
         <button class="btn btn-default"><i class="fa fa-reply"></i> Submit</button>
         <label for="textarea1">Comment :</label>
       </form>

@@ -118,7 +118,7 @@ class EventController extends Controller
                 $result = $this->client->request('GET', 'event/list/items',
                     [
                         'headers' => [
-                            'limit' => 2,
+                            'limit' => 10,
                     ]
                 ]);
             } elseif ($request->getQueryParam('page')) {
@@ -132,7 +132,7 @@ class EventController extends Controller
                 $result = $this->client->request('GET', 'event/list/items',
                     [
                         'headers' => [
-                            'limit' => 2,
+                            'limit' => 10,
                     ]
                 ]);
             }

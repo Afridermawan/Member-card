@@ -168,7 +168,16 @@ class UserController extends Controller
                 $imageName = $base.'/assets/img/avatar.svg';
             }
 
-            try {
+            $checkUsername = User::where('username', $insert['username'])->first();
+            $checkEmail = User::where('email', $insert['email'])->first();
+
+            if ($checkUsername && $checkEmail) {
+                return $this->responseDetail(409, true, 'Email & username sudah digunakan');
+            } elseif ($checkUsername) {
+                return $this->responseDetail(409, true, 'Username sudah digunakan');
+            } elseif ($checkEmail) {
+                return $this->responseDetail(409, true, 'Email sudah digunakan');
+            } else {
                 $user = new User;
                 $user->username    = $insert['username'];
                 $user->email       = $insert['email'];
@@ -177,8 +186,8 @@ class UserController extends Controller
                 $user->image       = $imageName;
                 $user->role_id     = 2;
                 $user->code        = $oQRC->get(300);;
+                dd($user);
                 $user->save();
-
                 $token = md5(openssl_random_pseudo_bytes(8));
 
                 $tokenId = Register::create([
@@ -239,14 +248,7 @@ class UserController extends Controller
                 $data = $this->responseDetail(201, false, 'Pendaftaran berhasil, silahkan cek email untuk aktivasi akun', [
                       'data'  => $user
                 ]);
-            } catch (Exception $e) {
-                echo '<p><b>Exception launched!</b><br /><br />' .
-                'Message: ' . $oExcept->getMessage() . '<br />' .
-                'File: ' . $oExcept->getFile() . '<br />' .
-                'Line: ' . $oExcept->getLine() . '<br />' .
-                'Trace: <p/><pre>' . $e->getTraceAsString() . '</pre>';
             }
-
          } else {
             $data = $this->responseDetail(401, true, $this->validator->errors());
          }

@@ -4,7 +4,7 @@
       <div class="page-title">
         <div class="title_left">
           <h3>
-                Pengguna
+                Daftar Penjualan
                 <small>
                     Member Card Apps
                 </small>
@@ -17,10 +17,10 @@
 
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
-<!--             <div class="x_title">
-                <a href="<?php echo e($link); ?>" class="btn btn-primary">Tambah Pengguna </a>
+            <div class="x_title">
+                <a href="<?php echo e($link.'add'); ?>" class="btn btn-primary">Tambah Penjualan </a>
                 <div class="clearfix"></div>
-            </div> -->
+            </div>
 
             <div class="x_content">
 
@@ -28,11 +28,11 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nama</th>
-                      <th>Email</th>
-                      <th>Telepon</th>
-                      <th>Kode</th>
-                      <th>Aksi</th>
+                      <th>Nama Pembeli</th>
+                      <th>Nama Barang</th>
+                      <th>Harga</th>
+                      <th>Kuantitas</th>
+                      <th>Total Harga</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -43,9 +43,10 @@
                         <tr>
                             <td> <?php echo e($key++); ?></td>
                             <td> <?php echo e($datas->username); ?> </td>
-                            <td> <?php echo e($datas->email); ?> </td>
-                            <td> <?php echo e($datas->phone); ?> </td>
-                            <td><img src="<?php echo e($datas->code); ?>" style="width:100px;heigth:100px" alt="Member Card"></td>
+                            <td> <?php echo e($datas->name); ?> </td>
+                            <td> <?php echo e($datas->harga); ?> </td>
+                            <td> <?php echo e($datas->kuantitas); ?> </td>
+                            <td> <?php echo e($datas->total_harga); ?> </td>
                             <td>
                                 <a href="<?php echo e($link.$datas->id.'/edit'); ?>" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
                                 <a href="<?php echo e($link.$datas->id.'/delete'); ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
@@ -54,7 +55,7 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
-                
+
             <?php if(isset($data->meta->pagination)): ?>
                 <?php
                 $page = $data->meta->pagination;
@@ -80,7 +81,7 @@
                 <?php endfor; ?>
 
                     <?php if(isset($page->links->next)): ?>
-                    <li><a href="<?php echo e($link); ?>list?page=<?php echo e($page->current_pages+1); ?>">>></a></li>
+                    <li><a href="<?php echo e($link); ?>list?page=<?php echo e($page->current_page+1); ?>">>></a></li>
                     <li><a href="<?php echo e($link); ?>list?page=<?php echo e($page->total_pages); ?>">Last</a></li>
                     <?php else: ?>
                     <li class="disabled"><a>>></a></li>

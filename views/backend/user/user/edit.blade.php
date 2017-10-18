@@ -11,7 +11,7 @@
 
 <div class="container">
   <div class="row">
-    <form class="col s12" action="{{ $base_url }}/web/user/edit/{{ $session->user_id }}/profile" method="post">
+    <form class="col s12" action="{{ $base_url }}/web/user/edit/{{ $session->id }}/profile" method="post">
       <div class="row">
         <div class="input-field col s12">
           <input value="{{ $session->username }}" name="username" id="username" type="text" class="validate">
@@ -42,10 +42,9 @@
       </div>
       <div class="row">  
         <div class="input-field col s12">
-          <select name="gender" value="{{ $session->gender }}">
-            <option disabled selected>Choose your option</option>
-            <option value="Laki-laki">Laki -laki</option>
-            <option value="Perempuan">Perempuan</option>
+          <select name="gender">
+            <option value="Laki-laki" @if ( $session->gender == Laki-laki ) selected="selected" @endif>Laki-laki</option>
+            <option value="Perempuan" @if ( $session->gender == Perempuan ) selected="selected" @endif>Perempuan</option>
           </select>
           <label>Jenis Kelamin</label>
         </div>

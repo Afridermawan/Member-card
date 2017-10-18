@@ -40,7 +40,7 @@
         <?php else: ?>
           <a class="modal-trigger" href="#modal3"><i class="material-icons">create</i> &nbsp Add PIN</a>
         <?php endif; ?>
-          <a href="<?php echo e($base_url); ?>/web/user/edit/<?php echo e($session->user_id); ?>/profile"><i class="material-icons">settings</i>&nbsp Setting Profile</a>
+          <a href="<?php echo e($base_url); ?>/web/user/edit/<?php echo e($session->id); ?>/profile"><i class="material-icons">settings</i>&nbsp Setting Profile</a>
         </div>
       </div>
     </div>
@@ -77,14 +77,13 @@
 <span style="float: right;">
 <!-- Modal Structure -->
 <div class="col s3 center-align">
-
 <div id="modal3" class="modal">
   <div class="modal-content">
       <form action="<?php echo e($base_url); ?>/web/pin/check/password" method="post">
           <div class="row">
             <div class="input-field col s12">
               <input name="password" id="password" type="password" class="validate">
-              <label for="password">Password</label>
+              <label for="password"><i class="material-icons">lock_outline</i> Password</label>
             </div>
           </div>
       </form>

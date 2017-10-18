@@ -270,14 +270,14 @@ class ArticleController extends Controller
 
     }
 
-    public function getComment($request, $response, $args)
+    public function getCommentId($request, $response, $args)
     {
-
-        $getComment = Comment::where('article_id', $args['id'])->get();
+        $comment = new Comment;
+        $getComment = $comment->where('id', $args['id'])->get();
         $fractal = new Manager();
         $fractal->setSerializer(new ArraySerializer);
 
-        if (count($getComment) > 0) :
+        if (count($getComment) > 0) {
 
             $resource = new Collection($getComment, new CommentTransformer);
             $data = $fractal->createData($resource)->toArray();
@@ -286,13 +286,38 @@ class ArticleController extends Controller
                 'data'  =>  $data
             ]);
 
-        else :
+        } else {
 
             $data = $this->responseDetail(200, false, 'Data Tidak Tersedia', [
                 'data'  =>  $getComment
             ]);
+        }
 
-        endif;
+        return $data;
+    }
+
+    public function getCommentArticleId($request, $response, $args)
+    {
+        $comment = new Comment;
+        $getComment = $comment->where('article_id', $args['id'])->get();
+        $fractal = new Manager();
+        $fractal->setSerializer(new ArraySerializer);
+
+        if (count($getComment) > 0) {
+
+            $resource = new Collection($getComment, new CommentTransformer);
+            $data = $fractal->createData($resource)->toArray();
+
+            $data = $this->responseDetail(200, false, 'Data tersedia', [
+                'data'  =>  $data
+            ]);
+
+        } else {
+
+            $data = $this->responseDetail(200, false, 'Data Tidak Tersedia', [
+                'data'  =>  $getComment
+            ]);
+        }
 
         return $data;
     }

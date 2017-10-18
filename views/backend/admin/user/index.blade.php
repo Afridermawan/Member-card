@@ -56,7 +56,7 @@
                     @endforeach
                   </tbody>
                 </table>
-
+                
             @if (isset($data->meta->pagination))
                 <?php
                 $page = $data->meta->pagination;

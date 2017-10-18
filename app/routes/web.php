@@ -16,7 +16,8 @@ $app->group('', function () use ($app, $container){
         $app->get('/article/{slug}', 'App\Controllers\Web\ArticleController:getArticleDetailSlug');
         $app->get('/article/{id}/detail', 'App\Controllers\Web\ArticleController:getArticleDetailId');
         $app->get('/article/{id}/comment', 'App\Controllers\Web\ArticleController:getComment');
-        $app->get('/comment/article', 'App\Controllers\Web\ArticleController:getArticleComment');
+        $app->get('/article/{id}/comment/admin', 'App\Controllers\Web\ArticleController:getCommentByAdmin');
+        $app->get('/comment/article', 'App\Controllers\Web\ArticleController:getArticleComment')->setName('get.comment');
         $app->post('/article/{id}/comment', 'App\Controllers\Web\ArticleController:postComment')->setName('add.comment');
         $app->get('/category', 'App\Controllers\Web\ArticleController:category');
         $app->get('/category/article', 'App\Controllers\Web\ArticleController:getCategory');

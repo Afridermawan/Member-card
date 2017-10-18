@@ -1,6 +1,4 @@
-@extends('templates.default')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="">
 
       <div class="page-title">
@@ -36,22 +34,22 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @php
+                    <?php
                     $key = 1;
-                    @endphp
-                    @foreach($data->data as $datas)
+                    ?>
+                    <?php $__currentLoopData = $data->data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td> {{ $key++ }}</td>
-                            <td> {{ $datas->title }} </td>
-                            <td> {{ $datas->username }} </td>
-                            <td> {{ $datas->comment }} </td>
-                            @if ($datas->user_id > 1)
+                            <td> <?php echo e($key++); ?></td>
+                            <td> <?php echo e($datas->title); ?> </td>
+                            <td> <?php echo e($datas->username); ?> </td>
+                            <td> <?php echo e($datas->comment); ?> </td>
+                            <?php if($datas->user_id > 1): ?>
                             <td>
-                                <a href="{{ $link.$datas->id.'/comment/admin' }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Balas</a>
+                                <a href="<?php echo e($link.$datas->id.'/comment/admin'); ?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Balas</a>
                             </td>
-                            @endif
+                            <?php endif; ?>
                         </tr>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
               </div>
@@ -60,4 +58,6 @@
 
         </div>
       </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

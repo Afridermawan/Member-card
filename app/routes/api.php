@@ -2,9 +2,9 @@
 
 $app->get('/task/cron', 'App\Controllers\Api\CronController:activateaccount');
 $app->group('/api', function () use ($app, $container){
-    $app->get('/activateaccount/{token}', 'App\Controllers\Api\UserController:activateaccount');
+    $app->get('/activateaccount/{token}', 'App\Controllers\Api\UserController:activateaccount'); 
     $app->post('/auth/signin', 'App\Controllers\Api\UserController:login');
-    $app->post('/auth/signup', 'App\Controllers\Api\UserController:register');
+    $app->post('/auth/signup', 'App\Controllers\Api\UserController:register'); 
     $app->get('/logout', 'App\Controllers\Api\UserController:logout');
     $app->post('/reset', 'App\Controllers\Api\UserController:forgotPassword');
     $app->get('/password/reset/{token}', 'App\Controllers\Api\UserController:getResetPassword');
@@ -19,7 +19,8 @@ $app->group('/api', function () use ($app, $container){
     $app->get('/article/{id}/delete', 'App\Controllers\Api\ArticleController:destroy');
     $app->get('/article/{slug}', 'App\Controllers\Api\ArticleController:getArticleDetailSlug');
     $app->get('/article/{id}/detail', 'App\Controllers\Api\ArticleController:getArticleDetailId');
-    $app->get('/article/{id}/comment', 'App\Controllers\Api\ArticleController:getComment');
+    $app->get('/article/{id}/comment', 'App\Controllers\Api\ArticleController:getCommentId');
+    $app->get('/article/comment/{id}', 'App\Controllers\Api\ArticleController:getCommentArticleId');
     $app->post('/article/{id}/comment', 'App\Controllers\Api\ArticleController:postComment')->setName('article.comment');
     $app->get('/comment/article', 'App\Controllers\Api\ArticleController:getArticleComment');
     $app->get('/category/article', 'App\Controllers\Api\ArticleController:getCategory');

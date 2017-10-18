@@ -21,23 +21,24 @@
     </div>
   </div>
 </div>
-    @foreach($comment->data as $comments)
-<div class="container">
-  <div class="card"  style="border-radius: 25px">
-    <div class="chip" style="margin: 15px">
-      <img src="{{ $comments->image }}" alt="Contact Person">
-      {{ $comments->username }}
-      <p style="padding-left: 20px"><i class="material-icons prefix">subdirectory_arrow_right</i> {{ $comments->comment }}</p>
+
+@foreach($comment->data as $comments)
+  <div class="container">
+    <div class="card"  style="border-radius: 25px">
+      <div class="chip" style="margin: 15px">
+        <img src="{{ $comments->image }}" alt="Contact Person">
+        {{ $comments->username }}
+        <p style="padding-left: 20px"><i class="material-icons prefix">subdirectory_arrow_right</i> {!! $comments->comment !!}</p>
+      </div>
     </div>
   </div>
-</div>
-    @endforeach
+@endforeach
 
 <div class="container"> 
     <div class="row">
       <div class="input-field col s12">
       <form action="{{ $base_url }}/web/article/{{ $data->id }}/comment" method="post">
-        <textarea name="comment" id="textarea1" class="materialize-textarea"></textarea>
+        <textarea name="comment" id="textarea1" class="materialize-textarea" placeholder="Tulis Komentar Anda .."></textarea>
         <button class="btn btn-default"><i class="fa fa-reply"></i> Submit</button>
         <label for="textarea1">Comment :</label>
       </form>

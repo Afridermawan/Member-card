@@ -143,7 +143,7 @@ class ArticleController extends Controller
         $data = json_decode($result->getBody()->getContents());
 
         try {
-            $result = $this->client->request('GET', 'article/'.$args['id'].'/comment');
+            $result = $this->client->request('GET', 'article/comment/'.$args['id']);
         } catch (GuzzleException $e) {
             $result = $e->getResponse();
         }
@@ -272,22 +272,43 @@ class ArticleController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/user/article/detail', [
-                'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/article",
-                'title'     =>  "Artikel",
-                'messages'  =>  $messages
+            'data'      =>  $data->data,
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/web/article",
+            'title'     =>  "Artikel",
+            'messages'  =>  $messages 
+        ]);
+    }
+
+    public function getCommentByAdmin($request, $response, $args)
+    {
+        try {
+            $result = $this->client->request('GET', 'article/'.$args['id'].'/comment');
+        } catch (GuzzleException $e) {
+            $result = $e->getResponse();
+        }
+
+        $data = json_decode($result->getBody()->getContents());
+        $messages = $this->flash->getMessages();
+
+        return $this->view->render($response, 'backend/admin/article/replay-comment', [
+            'comment'   =>  $data->data,
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/article/",
+            'title'     =>  "Artikel",
+            'messages'  =>  $messages
         ]);
     }
 
     public function postComment($request, $response, $args)
     {
         $session = $_SESSION['login'];
+
         try {
             $result = $this->client->request('POST', 'article/'.$args['id'].'/comment',[
                 'form_params' => [
                     'article_id'          =>  $args['id'],
-                    'user_id'             =>  $session->data->user_id,
+                    'user_id'             =>  $session->user_id,
                     'comment'             =>  $request->getParam('comment'),
                 ]
             ]);
@@ -297,7 +318,11 @@ class ArticleController extends Controller
 
         $data = json_decode($result->getBody()->getContents());
 
-        return $response->withRedirect($this->router->pathFor('detail.article',['id' => $args['id']]));
+        if ($session->role_id == 1) {
+            return $response->withRedirect($this->router->pathFor('get.comment'));
+        } else {
+            return $response->withRedirect($this->router->pathFor('detail.article',['id' => $args['id']]));
+        }
     }
 
     public function destroy($request, $response, $args)
@@ -327,8 +352,8 @@ class ArticleController extends Controller
         return $this->view->render($response, '/backend/admin/article/comment', [
             'data'      =>  $data->data,
             'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/comment/article",
-            'title'     =>  "Category"
+            'link'      =>  "http://localhost:8000/admin/article/",
+            'title'     =>  "Comments"
         ]);
     }
 
