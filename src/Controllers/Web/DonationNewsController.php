@@ -17,7 +17,7 @@ class DonationNewsController extends Controller
     {
         try {
             if ($request->getParam('search')) {
-                $result = $this->client->request('GET', 'donation-news/list', 
+                $result = $this->client->request('GET', 'donation-news/list',
                     [
                         'query' => [
                             'search' => $request->getParam('search')],
@@ -52,16 +52,16 @@ class DonationNewsController extends Controller
         if ($session->role_id == 1) {
     		return $this->view->render($response, 'backend/admin/donation-news/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/admin/donation-news/",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/admin/donation-news/",
                 'title'     =>  "Berita Donasi",
                 'messages'  => $messages,
             ]);
         } else {
             return $this->view->render($response, 'backend/user/donation-news/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/donation-news/",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/donation-news/",
                 'title'     =>  "Berita Donasi",
                 'messages'  => $messages,
             ]);
@@ -81,7 +81,7 @@ class DonationNewsController extends Controller
 
         return $this->view->render($response, 'backend.user.donation-news.detail', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Read Berita Donasi"
         ]);
     }
@@ -108,7 +108,7 @@ class DonationNewsController extends Controller
     public function getDonationNews($request, $response, $args)
     {
         return $this->view->render($response, 'backend/admin/donation-news/add', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Berita Donasi"
         ]);
     }
@@ -134,7 +134,7 @@ class DonationNewsController extends Controller
                     [
                         'name'      =>  'content',
                         'contents'  =>  $request->getParam('content'),
-                    ]                                        
+                    ]
                 ]
             ]);
         } catch (GuzzleException $e) {
@@ -157,7 +157,7 @@ class DonationNewsController extends Controller
         $data = $donasi->where('id', $args['id'])->first();
         return $this->view->render($response, 'backend/admin/donation-news/edit', [
             'data'      =>  $data,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Berita Donasi"
         ]);
     }
@@ -183,7 +183,7 @@ class DonationNewsController extends Controller
                     [
                         'name'      =>  'content',
                         'contents'  =>  $request->getParam('content'),
-                    ]                                        
+                    ]
                 ]
             ]);
         } catch (GuzzleException $e) {

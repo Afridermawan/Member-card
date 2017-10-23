@@ -4,7 +4,7 @@ namespace App\Controllers\Web;
 
 use GuzzleHttp\Exception\BadResponseException as GuzzleException;
 /**
-* 
+*
 */
 class FileSystemController extends Controller
 {
@@ -14,12 +14,12 @@ class FileSystemController extends Controller
 
         return $this->view->render($response, 'backend/user/user/upload', [
             'session'   =>  $session,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/web/pin/",
-            'title'     =>  "Upload image" 
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/web/pin/",
+            'title'     =>  "Upload image"
         ]);
     }
-	
+
 	public function upload($request, $response)
 	{
         $session = $_SESSION['login'];

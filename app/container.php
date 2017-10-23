@@ -20,7 +20,7 @@ $container['auth'] = function ($c) {
 $container['view'] = function ($container) {
     return new \Slim\Views\Blade(
         $container['settings']['renderer']['templates.path'],
-        $container['settings']['renderer']['cache']
+        $container['settings']['renderer']['cache'] 
     );
 
     $view->getEnvironment()->addGlobal('old', @$_SESSION['old']);
@@ -98,3 +98,5 @@ $container['notFoundHandler'] = function ($c) {
 		return $response->withRedirect($request->getUri()->getBasePath().'/404');
     };
 };
+ 
+ Veritrans_Config::$serverKey = 'VT-server-k7fH1US2t9bitNSBNjzQaLLv';

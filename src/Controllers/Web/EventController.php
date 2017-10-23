@@ -50,16 +50,16 @@ class EventController extends Controller
         if ($session->role_id == 1) {
     		return $this->view->render($response, 'backend/admin/event/index', [
                 'data'      => $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/admin/event/",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/admin/event/",
                 'title'     =>  "Event",
                 'messages'  =>  $messages
             ]);
         } else {
             return $this->view->render($response, 'backend/user/event/index', [
                 'data'      => $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/event/",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/event/",
                 'title'     =>  "Event",
                 'messages'  =>  $messages
             ]);
@@ -145,8 +145,8 @@ class EventController extends Controller
         $messages = $this->flash->getMessages();
         return $this->view->render($response, 'backend/admin/event/penjualan', [
             'data'      => $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/event/list/items",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/event/list/items",
             'title'     =>  "Event",
             'messages'  =>  $messages
         ]);
@@ -162,7 +162,7 @@ class EventController extends Controller
 
         $data = json_decode($result->getBody()->getContents());
 
-        return $response->withRedirect($this->router->pathFor('list.event'));   
+        return $response->withRedirect($this->router->pathFor('list.event'));
     }
 
     public function removeBuyerEvent($request, $response, $args)
@@ -181,8 +181,8 @@ class EventController extends Controller
     public function getAddEvent($request, $response)
     {
         return $this->view->render($response, 'backend/admin/event/add', [
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/event/list/items",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/event/list/items",
             'title'     =>  "Event"
         ]);
     }
@@ -202,21 +202,21 @@ class EventController extends Controller
                         'contents' => fopen( $path, 'r' )
                     ],
                     [
-                        'name'      =>  'name',        
-                        'contents'  =>  $request->getParam('name'),                        
+                        'name'      =>  'name',
+                        'contents'  =>  $request->getParam('name'),
                     ],
                     [
-                        'name'      =>  'biaya_pendaftaran',        
-                        'contents'  =>  $request->getParam('biaya_pendaftaran'),                        
+                        'name'      =>  'biaya_pendaftaran',
+                        'contents'  =>  $request->getParam('biaya_pendaftaran'),
                     ],
                     [
-                        'name'      =>  'description',        
-                        'contents'  =>  $request->getParam('description'),                        
+                        'name'      =>  'description',
+                        'contents'  =>  $request->getParam('description'),
                     ],
                     [
-                        'name'      =>  'start_date',        
-                        'contents'  =>  $request->getParam('start_date'),                        
-                    ],                                        
+                        'name'      =>  'start_date',
+                        'contents'  =>  $request->getParam('start_date'),
+                    ],
                 ]
             ]);
         } catch (GuzzleException $e) {
@@ -240,7 +240,7 @@ class EventController extends Controller
         $data = $event->where('id', $args['id'])->first();
         return $this->view->render($response, 'backend/admin/event/edit', [
             'data'      =>  $data,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Event"
         ]);
     }
@@ -260,21 +260,21 @@ class EventController extends Controller
                         'contents' => fopen( $path, 'r' )
                     ],
                     [
-                        'name'      =>  'name',        
-                        'contents'  =>  $request->getParam('name'),                        
+                        'name'      =>  'name',
+                        'contents'  =>  $request->getParam('name'),
                     ],
                     [
-                        'name'      =>  'biaya_pendaftaran',        
-                        'contents'  =>  $request->getParam('biaya_pendaftaran'),                        
+                        'name'      =>  'biaya_pendaftaran',
+                        'contents'  =>  $request->getParam('biaya_pendaftaran'),
                     ],
                     [
-                        'name'      =>  'description',        
-                        'contents'  =>  $request->getParam('description'),                        
+                        'name'      =>  'description',
+                        'contents'  =>  $request->getParam('description'),
                     ],
                     [
-                        'name'      =>  'start_date',        
-                        'contents'  =>  $request->getParam('start_date'),                        
-                    ],                                        
+                        'name'      =>  'start_date',
+                        'contents'  =>  $request->getParam('start_date'),
+                    ],
                 ]
             ]);
         } catch (GuzzleException $e) {
@@ -295,15 +295,14 @@ class EventController extends Controller
     public function getBuy($request, $response)
     {
         return $this->view->render($response, 'backend/admin/event/addBuy', [
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/event/list/items",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/event/list/items",
             'title'     =>  "Event"
         ]);
     }
 
-    public function buy($request, $response, $args) 
+    public function buy($request, $response, $args)
     {
-        $query = $request->getQueryParams();
         try {
             $result = $this->client->request('POST', 'event/'.$args['id'].'/buy',[
                 'form_params' => [
@@ -330,6 +329,27 @@ class EventController extends Controller
         }
     }
 
+    public function pay($request, $response, $args)
+    {
+        try {
+            $result = $this->client->request('POST', 'event/'.$args['id'].'/pay',[
+                'form_params' => [
+                    'event_id'    =>  $args['id'],
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            $result = $e->getResponse();
+        }
+
+        $data = json_decode($result->getBody()->getContents());
+
+        return $this->view->render($response, 'backend/user/event/bayar', [
+            'data'      =>  $data->data,
+            'title'     =>  "Bayar Event",
+            'messages'  =>  $messages
+        ]);
+    }
+
     public function getBuyEvent($request, $response, $args)
     {
         try {
@@ -344,7 +364,7 @@ class EventController extends Controller
 
         return $this->view->render($response, 'backend/user/event/pendaftaran', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Daftar Event",
             'messages'  =>  $messages
         ]);
@@ -357,7 +377,7 @@ class EventController extends Controller
 
         return $this->view->render($response, 'backend/user/event/detail-pendaftaran', [
             'event'      =>  $event,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Detail Pendaftaran",
             'messages'  =>  $messages
         ]);
@@ -366,10 +386,10 @@ class EventController extends Controller
     public function bayar($request, $response, $args)
     {
         $messages = $this->flash->getMessages();
-        
+
         return $this->view->render($response, 'backend/user/event/bayar', [
             'produk'      => $produk,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Bayar",
             'messages'  =>  $messages
         ]);

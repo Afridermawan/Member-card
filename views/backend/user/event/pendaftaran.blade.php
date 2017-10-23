@@ -12,8 +12,8 @@
       <div class="card-stacked">
         <div class="card-content">
           <p>
-            Name : {{ $data->name }}<br>
-            Biaya Pendaftaran : {{ $data->biaya_pendaftaran }}<br>
+            Name :<span style="float: right;">{{ $data->name }}</span> <br>
+            Biaya Pendaftaran : <span style="float: right;">{{ $data->biaya_pendaftaran }}</span> <br>
           </p>
           <p>
           <form action="{{ $base_url }}/web/event/{{ $data->id }}/buy" method="post">
@@ -30,5 +30,5 @@
     </div>
   </div>
   </div>
-  </div>  
+  </div>
 @endsection

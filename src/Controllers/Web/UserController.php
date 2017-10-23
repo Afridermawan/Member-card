@@ -51,8 +51,8 @@ class UserController extends Controller
 
 		return $this->view->render($response, 'backend/admin/user/index', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/user/",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/user/",
             'title'     =>  "Pengguna",
             'messages'  =>  $messages
         ]);
@@ -103,7 +103,7 @@ class UserController extends Controller
     public function getAddUser($request, $response)
     {
         return $this->view->render($response, 'backend/user/auth/register', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Register"
         ]);
     }
@@ -141,7 +141,7 @@ class UserController extends Controller
         $data = $user->where('id', $args['id'])->first();
         return $this->view->render($response, 'backend/admin/user/edit', [
             'data'      =>  $data,
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Pengguna"
         ]);
     }
@@ -210,7 +210,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/admin/auth/login', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Login Admin",
             'messages'  =>  $messages
         ]);
@@ -268,7 +268,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/user/auth/login', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Login",
             'messages'  =>  $messages
         ]);
@@ -313,7 +313,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/user/auth/verification', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Lupa Password",
             'messages'  =>  $messages
         ]);
@@ -381,7 +381,7 @@ class UserController extends Controller
             return  $this->view->render($response, 'backend/user/auth/reset-password',[
                 'data'      =>  $data->data,
                 'title'     =>  'Reset Password',
-                'base_url'  =>  "http://localhost:8000",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
                 'messages'  =>  $messages
             ]);
 
@@ -423,7 +423,7 @@ class UserController extends Controller
         $_SESSION['pin'] = $data->data->pin;
 
         return $this->view->render($response, 'backend/user/user/detail', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Profile",
             'messages'  =>  $messages,
             'session'   =>  $session,
@@ -437,7 +437,7 @@ class UserController extends Controller
         $session = $_SESSION['login'];
 
         return $this->view->render($response, 'backend/user/user/edit', [
-            'base_url'  =>  "http://localhost:8000",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
             'title'     =>  "Edit Profile",
             'messages'  =>  $messages,
             'session'   =>  $session
@@ -469,7 +469,7 @@ class UserController extends Controller
             $this->flash->addMessage('error', $data->message);
             return $response->withRedirect($this->router->pathFor('edit.profile'));
         } else {
-            $_SESSION['login'] = $data->data; 
+            $_SESSION['login'] = $data->data;
             $this->flash->addMessage('success', $data->message);
             return $response->withRedirect($this->router->pathFor('profile'));
         }

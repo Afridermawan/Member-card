@@ -21,11 +21,11 @@
             Total :<span style="float: right;"> {{ $event->total_harga }}</span>
           </p>
         <div class="card-action">
-          <a href="{{ $base_url }}/web/event/bayar"><i class="material-icons">payment</i> &nbsp Lanjutkan Pembayaran</a>
+          <a href="{{ $base_url }}/web/event/{{ $event->id }}/pay"><i class="material-icons">payment</i> &nbsp Lanjutkan Pembayaran</a>
         </div>
       </div>
     </div>
   </div>
   </div>
-  </div>  
+  </div>
 @endsection

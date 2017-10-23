@@ -12,7 +12,7 @@ class ArticleController extends Controller
     /**
     * Sample handler
     */
-    public function getArticle($request, $response)  
+    public function getArticle($request, $response)
     {
         try {
             if ($request->getParam('search')) {
@@ -20,7 +20,7 @@ class ArticleController extends Controller
                     [
                         'query' => [
                             'search' => $request->getParam('search')],
-                        'headers' => [ 
+                        'headers' => [
                             'limit' => 10,
                     ]
                 ]);
@@ -51,23 +51,23 @@ class ArticleController extends Controller
         if ($session->role_id == 1) {
             return $this->view->render($response, 'backend/admin/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/admin/article/",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/admin/article/",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
             ]);
         } else {
             return $this->view->render($response, 'backend/user/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/article/",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/article/",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
             ]);
         }
     }
 
-    public function getArticleTag($request, $response) 
+    public function getArticleTag($request, $response)
     {
         try {
             if ($request->getParam('search')) {
@@ -104,8 +104,8 @@ class ArticleController extends Controller
         $messages = $this->flash->getMessages();
         return $this->view->render($response, 'backend/user/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/article",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -124,8 +124,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/user/article/detail', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/article",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
                 'title'     =>  "Read Artikel",
                 'messages'  =>  $messages
         ]);
@@ -155,8 +155,8 @@ class ArticleController extends Controller
         return $this->view->render($response, 'backend/user/article/detail', [
                 'data'      =>  $data->data,
                 'comment'   =>  $comment->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/article",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
                 'title'     =>  "Read Artikel",
                 'messages'  =>  $messages
         ]);
@@ -175,8 +175,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, '/backend/admin/article/index', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/article",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/article",
             'title'     =>  "Artikel"
         ]);
     }
@@ -194,8 +194,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, '/backend/admin/article/category', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/category/article",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/category/article",
             'title'     =>  "Category"
         ]);
     }
@@ -237,8 +237,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/user/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/web/article",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -273,10 +273,10 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/user/article/detail', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/web/article",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/web/article",
             'title'     =>  "Artikel",
-            'messages'  =>  $messages 
+            'messages'  =>  $messages
         ]);
     }
 
@@ -293,8 +293,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/admin/article/replay-comment', [
             'comment'   =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/article/",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/article/",
             'title'     =>  "Artikel",
             'messages'  =>  $messages
         ]);
@@ -351,8 +351,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, '/backend/admin/article/comment', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/article/",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/article/",
             'title'     =>  "Comments"
         ]);
     }
@@ -362,8 +362,8 @@ class ArticleController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/admin/article/add', [
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/admin/article",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/admin/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -382,7 +382,7 @@ class ArticleController extends Controller
                         'filename' => $name,
                         'Mime-Type'=> $mime,
                         'contents' => fopen( $path, 'r' )
-                    ],                                        
+                    ],
                 ],
                 'query' => [
                     'title'     =>  $request->getParam('title'),
@@ -418,8 +418,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/admin/article/edit', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "http://localhost:8000",
-                'link'      =>  "http://localhost:8000/admin/article",
+                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'link'      =>  "https://8de60e5a.ngrok.io/admin/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -438,7 +438,7 @@ class ArticleController extends Controller
                         'filename' => $name,
                         'Mime-Type'=> $mime,
                         'contents' => fopen( $path, 'r' )
-                    ],                                        
+                    ],
                 ],
                 'query' => [
                     'title'     =>  $request->getParam('title'),

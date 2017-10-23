@@ -297,7 +297,7 @@ class EventController extends Controller
                 $image->addValidations(array(
                     new \Upload\Validation\Mimetype(array('image/png', 'image/gif',
                     'image/jpg', 'image/jpeg')),
-                    new \Upload\Validation\Size('2M') 
+                    new \Upload\Validation\Size('2M')
                 ));
 
                 try {
@@ -374,8 +374,8 @@ class EventController extends Controller
                 $resource = new Item($find_event, new UserEventTransformer);
                 $data = $fractal->createData($resource)->toArray();
 
-                $data = $this->responseDetail(200, false, 'Berhasil membeli barang', [
-                      'data'  => $data
+                $data = $this->responseDetail(200, false, 'Lanjutkan pembayaran', [
+                      'data'        =>   $data,
                 ]);
             } catch (Exception $e) {
                 $data = $e->getResponse();
@@ -387,6 +387,33 @@ class EventController extends Controller
 
          return $data;
     }
+
+    public function pay($request, $response, $args)
+    {
+        $event = UserEvent::where('id', $args['id'])->first();
+
+        $fractal = new Manager();
+        $fractal->setSerializer(new ArraySerializer);
+        $resource = new Item($event, new UserEventTransformer);
+        $data->data = $fractal->createData($resource)->toArray();
+
+        $transaction_details = array(
+          'order_id'    =>  'ORD-EV'.date('YmdHis').rand(10,99),
+          'gross_amount'=>  $event->total_harga, // no decimal allowed for creditcard
+        );
+        dd($transaction_details);
+        $transaction = array(
+            'transaction_details' => $transaction_details,
+        );
+
+        $snapToken = \Veritrans_Snap::getSnapToken($transaction);
+        $data->token = $snapToken;
+
+        return $this->responseDetail(200, false, 'Berhasil', [
+            'data'  =>   $data
+        ]);
+    }
+
 
     public function listItems($request, $response, $args)
     {

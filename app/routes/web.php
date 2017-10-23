@@ -1,7 +1,7 @@
 <?php
 
 $app->get('/mc-admin', 'App\Controllers\Web\UserController:getLoginAsAdmin')->setName('login.admin');
-$app->post('/mc-admin', 'App\Controllers\Web\UserController:loginAsAdmin')->setName('login.admin'); 
+$app->post('/mc-admin', 'App\Controllers\Web\UserController:loginAsAdmin')->setName('login.admin');
 
 $app->group('', function () use ($app, $container){
     $app->group('/admin', function () use ($app, $container){
@@ -133,10 +133,10 @@ $app->group('', function () use ($app, $container){
             $app->get('/list', 'App\Controllers\Web\EventController:getEvent')->setName('list.event');
             $app->get('/{slug}/detail', 'App\Controllers\Web\EventController:getEventDetailSlug');
             $app->get('/{id}/find', 'App\Controllers\Web\EventController:getEventDetailId');
-            $app->get('/{id}/buy', 'App\Controllers\Web\EventController:getBuyEvent')->setName('beli.event');
-            $app->post('/{id}/buy', 'App\Controllers\Web\EventController:buy')->setName('beli.event');
+            $app->get('/{id}/buy', 'App\Controllers\Web\EventController:getBuyEvent')->setName('buy.event');
+            $app->post('/{id}/buy', 'App\Controllers\Web\EventController:buy');
+            $app->post('/{id}/pay', 'App\Controllers\Web\EventController:pay')->setName('pay');
             $app->get('/list/items', 'App\Controllers\Web\EventController:listItems')->setName('list.items.event');
-            $app->get('/bayar', 'App\Controllers\Web\EventController:bayar')->setName('bayar');
             $app->get('/{id}/list/items', 'App\Controllers\Web\EventController:findItems')->setName('detail.daftar.event');
             $app->post('/{id}/edit/buy', 'App\Controllers\Web\EventController:editBuy')
                 ->setName('edit.pembelian.event');
@@ -153,6 +153,9 @@ $app->group('', function () use ($app, $container){
         $app->group('/donation-news', function () use ($app, $container){
             $app->get('/list', 'App\Controllers\Web\DonationNewsController:getDonation')->setName('list.donasi');
             $app->get('/{id}', 'App\Controllers\Web\DonationNewsController:getDonationDetailId');
+        });
+        $app->group('/payment', function () use ($app, $container){
+            $app->post('/notification', 'App\Controllers\Web\PaymentController:notification')->setName('payment.notification');
         });
     });
 })->add(new \App\Middlewares\AuthMiddleware($container));

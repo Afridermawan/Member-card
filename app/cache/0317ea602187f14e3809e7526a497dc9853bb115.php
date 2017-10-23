@@ -10,8 +10,8 @@
       <div class="card-stacked">
         <div class="card-content">
           <p>
-            Name : <?php echo e($data->name); ?><br>
-            Biaya Pendaftaran : <?php echo e($data->biaya_pendaftaran); ?><br>
+            Name :<span style="float: right;"><?php echo e($data->name); ?></span> <br>
+            Biaya Pendaftaran : <span style="float: right;"><?php echo e($data->biaya_pendaftaran); ?></span> <br>
           </p>
           <p>
           <form action="<?php echo e($base_url); ?>/web/event/<?php echo e($data->id); ?>/buy" method="post">
@@ -28,7 +28,7 @@
     </div>
   </div>
   </div>
-  </div>  
+  </div>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.user.templates.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

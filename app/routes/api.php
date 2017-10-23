@@ -2,9 +2,9 @@
 
 $app->get('/task/cron', 'App\Controllers\Api\CronController:activateaccount');
 $app->group('/api', function () use ($app, $container){
-    $app->get('/activateaccount/{token}', 'App\Controllers\Api\UserController:activateaccount'); 
+    $app->get('/activateaccount/{token}', 'App\Controllers\Api\UserController:activateaccount');
     $app->post('/auth/signin', 'App\Controllers\Api\UserController:login');
-    $app->post('/auth/signup', 'App\Controllers\Api\UserController:register'); 
+    $app->post('/auth/signup', 'App\Controllers\Api\UserController:register');
     $app->get('/logout', 'App\Controllers\Api\UserController:logout');
     $app->post('/reset', 'App\Controllers\Api\UserController:forgotPassword');
     $app->get('/password/reset/{token}', 'App\Controllers\Api\UserController:getResetPassword');
@@ -61,6 +61,7 @@ $app->group('/api', function () use ($app, $container){
         $app->get('/{id}/restore', 'App\Controllers\Api\EventController:restore');
         $app->post('/{id}/edit', 'App\Controllers\Api\EventController:putEvent');
         $app->post('/{id}/buy', 'App\Controllers\Api\EventController:buy');
+        $app->post('/{id}/pay', 'App\Controllers\Api\EventController:pay');
         $app->get('/list/items', 'App\Controllers\Api\EventController:listItems');
         $app->get('/{id}/list/items', 'App\Controllers\Api\EventController:findItems');
         $app->get('/{id}/remove/event/item', 'App\Controllers\Api\EventController:removeBuyerEvent');

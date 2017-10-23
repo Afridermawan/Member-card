@@ -25,7 +25,7 @@
                   <div class="col s12 m6 offset-m3">
                      <div class="card" style="border-radius: 25px;box-shadow: 2px 2px 4px #000000;background: #fafafa">
                         <div class="card-content">
-                           <span class="card-title black-text">Sign In</span>
+                           <span class="card-title black-text">Sign Up</span>
                            <form action="<?php echo e($base_url); ?>/auth/signup" method="post">
                               <div class="row">
                                  <div class="input-field col s12">

@@ -13,9 +13,4 @@ return array(
     'Gregwar\\Image' => array($vendorDir . '/gregwar/image'),
     'Gregwar\\Cache' => array($vendorDir . '/gregwar/cache'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
-    'Behat\\Transliterator' => array($vendorDir . '/behat/transliterator/src'),
-    'Behat\\Testwork' => array($vendorDir . '/behat/behat/src'),
-    'Behat\\MinkExtension' => array($vendorDir . '/behat/mink-extension/src'),
-    'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
-    'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
 );

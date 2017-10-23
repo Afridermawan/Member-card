@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd34163e42441d6957c5171be21aa6743
+class ComposerStaticInit58917533f54a1ebe04ca15d321f15c52
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -12,8 +12,8 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
@@ -34,13 +34,9 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
-            'Symfony\\Component\\EventDispatcher\\' => 34,
-            'Symfony\\Component\\DependencyInjection\\' => 38,
             'Symfony\\Component\\Debug\\' => 24,
-            'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
-            'Symfony\\Component\\ClassLoader\\' => 30,
             'Slim\\Views\\' => 11,
             'Slim\\Flash\\' => 11,
             'Slim\\Csrf\\' => 10,
@@ -66,7 +62,6 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         ),
         'L' => 
         array (
-            'League\\Plates\\' => 14,
             'League\\Fractal\\' => 15,
             'League\\Flysystem\\' => 17,
         ),
@@ -107,10 +102,6 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         array (
             'Cocur\\Slugify\\' => 14,
             'Carbon\\' => 7,
-        ),
-        'B' => 
-        array (
-            'Behat\\Mink\\' => 11,
         ),
         'A' => 
         array (
@@ -163,21 +154,9 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
-        'Symfony\\Component\\EventDispatcher\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
-        ),
-        'Symfony\\Component\\DependencyInjection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/dependency-injection',
-        ),
         'Symfony\\Component\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
-        ),
-        'Symfony\\Component\\CssSelector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/css-selector',
         ),
         'Symfony\\Component\\Console\\' => 
         array (
@@ -186,10 +165,6 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         'Symfony\\Component\\Config\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
-        ),
-        'Symfony\\Component\\ClassLoader\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/class-loader',
         ),
         'Slim\\Views\\' => 
         array (
@@ -242,10 +217,6 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
-        ),
-        'League\\Plates\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/plates/src',
         ),
         'League\\Fractal\\' => 
         array (
@@ -335,10 +306,6 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
-        'Behat\\Mink\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/behat/mink/src',
-        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
@@ -392,29 +359,6 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
                 0 => __DIR__ . '/..' . '/doctrine/lexer/lib',
             ),
         ),
-        'B' => 
-        array (
-            'Behat\\Transliterator' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/transliterator/src',
-            ),
-            'Behat\\Testwork' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/behat/src',
-            ),
-            'Behat\\MinkExtension' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/mink-extension/src',
-            ),
-            'Behat\\Gherkin' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/gherkin/src',
-            ),
-            'Behat\\Behat' => 
-            array (
-                0 => __DIR__ . '/..' . '/behat/behat/src',
-            ),
-        ),
     );
 
     public static $classMap = array (
@@ -422,16 +366,41 @@ class ComposerStaticInitd34163e42441d6957c5171be21aa6743
         'Firebase\\FirebaseInterface' => __DIR__ . '/..' . '/ktamas77/firebase-php/src/firebaseInterface.php',
         'Firebase\\FirebaseLib' => __DIR__ . '/..' . '/ktamas77/firebase-php/src/firebaseLib.php',
         'Firebase\\FirebaseStub' => __DIR__ . '/..' . '/ktamas77/firebase-php/src/firebaseStub.php',
-        'QRCode' => __DIR__ . '/..' . '/ph-7/qrcode-generator-php-class/QRCode.class.php',
+        'SnapIntegrationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/integration/SnapIntegrationTest.php',
+        'VT_Tests' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VtTests.php',
+        'VeritransApiRequestorTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransApiRequestorTest.php',
+        'VeritransConfigTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransConfigTest.php',
+        'VeritransNotificationIntegrationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/integration/VtNotificationIntegrationTest.php',
+        'VeritransNotificationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransNotificationTest.php',
+        'VeritransSnapApiRequestorTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransSnapApiRequestorTest.php',
+        'VeritransSnapTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransSnapTest.php',
+        'VeritransTransactionTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransTransactionTest.php',
+        'VeritransVtDirectTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransVtDirectTest.php',
+        'VeritransVtWebTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/VeritransVtWebTest.php',
+        'Veritrans_ApiRequestor' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/ApiRequestor.php',
+        'Veritrans_Config' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/Config.php',
+        'Veritrans_Notification' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/Notification.php',
+        'Veritrans_Sanitizer' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/Sanitizer.php',
+        'Veritrans_Snap' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/Snap.php',
+        'Veritrans_SnapApiRequestor' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/SnapApiRequestor.php',
+        'Veritrans_Transaction' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/Transaction.php',
+        'Veritrans_VtDirect' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/VtDirect.php',
+        'Veritrans_VtWeb' => __DIR__ . '/..' . '/veritrans/veritrans-php/Veritrans/VtWeb.php',
+        'VtChargeFixture' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/utility/VtFixture.php',
+        'VtDirectIntegrationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/integration/VtDirectIntegrationTest.php',
+        'VtFixture' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/utility/VtFixture.php',
+        'VtIntegrationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/integration/VtIntegrationTest.php',
+        'VtTransactionIntegrationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/integration/VtTransactionIntegrationTest.php',
+        'VtWebIntegrationTest' => __DIR__ . '/..' . '/veritrans/veritrans-php/tests/integration/VtWebIntegrationTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd34163e42441d6957c5171be21aa6743::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd34163e42441d6957c5171be21aa6743::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd34163e42441d6957c5171be21aa6743::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitd34163e42441d6957c5171be21aa6743::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit58917533f54a1ebe04ca15d321f15c52::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit58917533f54a1ebe04ca15d321f15c52::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit58917533f54a1ebe04ca15d321f15c52::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit58917533f54a1ebe04ca15d321f15c52::$classMap;
 
         }, null, ClassLoader::class);
     }

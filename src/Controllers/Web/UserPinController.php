@@ -15,7 +15,7 @@ class UserPinController extends Controller
     {
         try {
             if ($request->getParam('search')) {
-                $result = $this->client->request('GET', 'pin/list', 
+                $result = $this->client->request('GET', 'pin/list',
                     [
                         'query' => [
                             'search' => $request->getParam('search')],
@@ -48,8 +48,8 @@ class UserPinController extends Controller
 
 		return $this->view->render($response, 'backend/admin/user/pin', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/admin/pin/",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/admin/pin/",
             'title'     =>  "Pengguna"
         ]);
     }
@@ -107,8 +107,8 @@ class UserPinController extends Controller
 
         return $this->view->render($response, 'backend/user/user/pin', [
             'session'   =>  $session,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/web/pin/",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/web/pin/",
             'title'     =>  "Add PIN"
         ]);
     }
@@ -155,8 +155,8 @@ class UserPinController extends Controller
         return $this->view->render($response, 'backend/user/user/edit-pin', [
             'data'      =>  $data->data,
             'session'   =>  $session,
-            'base_url'  =>  "http://localhost:8000",
-            'link'      =>  "http://localhost:8000/web/pin/",
+            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'link'      =>  "https://8de60e5a.ngrok.io/web/pin/",
             'title'     =>  "Edit PIN"
         ]);
     }

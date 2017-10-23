@@ -19,13 +19,13 @@
             Total :<span style="float: right;"> <?php echo e($event->total_harga); ?></span>
           </p>
         <div class="card-action">
-          <a href="<?php echo e($base_url); ?>/web/event/bayar"><i class="material-icons">payment</i> &nbsp Lanjutkan Pembayaran</a>
+          <a href="<?php echo e($base_url); ?>/web/event/<?php echo e($event->id); ?>/pay"><i class="material-icons">payment</i> &nbsp Lanjutkan Pembayaran</a>
         </div>
       </div>
     </div>
   </div>
   </div>
-  </div>  
+  </div>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.user.templates.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
