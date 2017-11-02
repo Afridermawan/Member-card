@@ -8,7 +8,7 @@
 </script>
 @endsection
 @section('content')
-{{ dd($payment_method->data[0]->id) }}
+{{-- {{ dd($payment_method->data[0]->id) }} --}}
 <div class="container">
   <div class="row">
     <form class="col s12" action="{{ $base_url }}/web/deposit/kredit" method="post">
@@ -34,7 +34,7 @@
         <div class="input-field col s12">
           <select name="payment_method">
               @foreach ($payment_method->data as $payment)
-                  <option value="{{$payment->id}}">{{ $payment->name }}</option>
+                  <option value="{{ $payment->id }}">{{ $payment->name }}</option>
               @endforeach
           </select>
           <label>Jenis pembayaran</label>

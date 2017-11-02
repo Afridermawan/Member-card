@@ -7,7 +7,6 @@
 </script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php echo e(dd($payment_method->data[0]->id)); ?>
 
 <div class="container">
   <div class="row">

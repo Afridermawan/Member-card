@@ -98,30 +98,38 @@ class DepositController extends Controller
 
     public function kredit($request, $response)
     {
-        var_dump($request->getParam('username'));
-        var_dump($request->getParam('email'));
-        var_dump($request->getParam('phone'));
-        var_dump($request->getParam('payment_methode'));
-        var_dump($request->getParam('total'));
-        var_dump($request->getParam('description'));die;
+        // var_dump($request->getParam('username'));
+        // var_dump($request->getParam('email'));
+        // var_dump($request->getParam('phone'));
+        // var_dump($request->getParam('payment_methode'));
+        // var_dump($request->getParam('total'));
+        // var_dump($request->getParam('description'));die;
 
         try {
             $result = $this->client_deposit->request('POST', 'customer/deposit', [
-                'name'              =>  $request->getParam('username'),
-                'email'             =>  $request->getParam('email'),
-                'phone'             =>  $request->getParam('phone'),
-                'payment_method'    =>  $request->getParam('payment_method'),
-                'total'             =>  $request->getParam('total'),
-                'description'       =>  $request->getParam('description'),
+                'form_params' => [
+                    'name'              =>  $request->getParam('username'),
+                    'email'             =>  $request->getParam('email'),
+                    'phone'             =>  $request->getParam('phone'),
+                    'payment_method'    =>  $request->getParam('payment_method'),
+                    'total'             =>  $request->getParam('total'),
+                    'description'       =>  $request->getParam('description'),
+                ]
             ]);
+
         } catch (GuzzleException $e) {
             $result = $e->getResponse();
         }
 
         $data = json_decode($result->getBody()->getContents());
 
-        $this->flash->addMessage('success', 'Silahkan cek email anda, untuk melanjutkan pembayaran');
-        return $response->withRedirect($this->router->pathFor('profile'));
+        if ($data->status == 400) {
+            $this->flash->addMessage('error', $data->status);
+            return $response->withRedirect($this->router->pathFor('profile'));
+        }else{
+            $this->flash->addMessage('success', 'Silahkan cek email anda, untuk melanjutkan pembayaran');
+            return $response->withRedirect($this->router->pathFor('profile'));
+        }
     }
 
     public function debit($request, $response)
