@@ -380,7 +380,7 @@ class UserController extends Controller
 
     public function editProfile($request, $response, $args)
     {
-        $id = Token::where('token', $request->getHeaderLine('Authorization'))->first();
+        $id = Token::where('token', $request->getHeader('Authorization')[0])->first();
         $insert = $request->getParsedBody();
           $rules = [
             'required' => [
@@ -402,7 +402,6 @@ class UserController extends Controller
         if ($this->validator->validate()) {
             $base = $request->getUri()->getBaseUrl();
 
-            try {
                 $user = User::where('id', $id->user_id)->first();
                 $user->username    = $insert['username'];
                 $user->email       = $insert['email'];
@@ -416,14 +415,6 @@ class UserController extends Controller
                 $data = $this->responseDetail(200, false, 'Berhasil memperbaharui data', [
                       'data'  => $user
                 ]);
-            } catch (Exception $e) {
-                echo '<p><b>Exception launched!</b><br /><br />' .
-                'Message: ' . $oExcept->getMessage() . '<br />' .
-                'File: ' . $oExcept->getFile() . '<br />' .
-                'Line: ' . $oExcept->getLine() . '<br />' .
-                'Trace: <p/><pre>' . $e->getTraceAsString() . '</pre>';
-            }
-
          } else {
             $data = $this->responseDetail(400, true, $this->validator->errors());
          }

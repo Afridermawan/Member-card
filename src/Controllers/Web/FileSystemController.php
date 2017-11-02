@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controllers\Web;
 
@@ -14,8 +14,8 @@ class FileSystemController extends Controller
 
         return $this->view->render($response, 'backend/user/user/upload', [
             'session'   =>  $session,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/web/pin/",
+            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
+            'link'      =>  "http://firzilmit.mlopp.com/member-card/public/web/pin/",
             'title'     =>  "Upload image"
         ]);
     }

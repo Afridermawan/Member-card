@@ -157,5 +157,16 @@ $app->group('', function () use ($app, $container){
         $app->group('/payment', function () use ($app, $container){
             $app->post('/notification', 'App\Controllers\Web\PaymentController:notification')->setName('payment.notification');
         });
+        $app->group('/deposit', function () use ($app, $container){
+            $app->get('/history', 'App\Controllers\Web\DepositController:historyDeposit')->setName('history');
+            $app->get('/kredit', 'App\Controllers\Web\DepositController:getkredit')->setName('kredit');
+            $app->post('/kredit', 'App\Controllers\Web\DepositController:kredit')->setName('kredit');
+            $app->get('/debit', 'App\Controllers\Web\DepositController:debit')->setName('debit');
+            $app->post('/debit', 'App\Controllers\Web\DepositController:debit')->setName('debit');
+            $app->get('/saldo', 'App\Controllers\Web\DepositController:checkSaldo')->setName('check.saldo');
+            $app->get('/debit/{id}', 'App\Controllers\Web\DepositController:historyById')->setName('history.debit.id');
+            $app->get('/history/debit', 'App\Controllers\Web\DepositController:history')->setName('history.debit');
+            $app->get('/payment-method', 'App\Controllers\Web\DepositController:paymentMethod')->setName('payment-method');
+        });
     });
 })->add(new \App\Middlewares\AuthMiddleware($container));

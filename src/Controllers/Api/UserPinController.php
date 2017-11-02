@@ -12,7 +12,7 @@ use League\Fractal\Resource\Item;
 use League\Fractal\Serializer\DataArraySerializer;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\ArraySerializer;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter; 
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Cocur\Slugify\Slugify;
 
 class UserPinController extends Controller
@@ -228,7 +228,7 @@ class UserPinController extends Controller
     {
         $users = new User;
         $id = Token::where('token', $request->getHeader('Authorization')[0])->first();
-        $user = User::where('id', $id->user_id)->first();
+        $user = User::where('user_id', $id->user_id)->first();
 
         if (empty($user)) {
             $data = $this->responseDetail(400, true, 'User tidak terdaftar');

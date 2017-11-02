@@ -10,12 +10,10 @@
 
   <!-- Bootstrap core CSS -->
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
-
   <link rel="shortcut icon" type="image/png" href="{{ $base_url }}/assets/img/card.png">
   <link href="{{$base_url}}/assets/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- <link href="{{$base_url}}/assets/fonts/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link href="{{$base_url}}/assets/fonts/css/font-awesome.min.css" rel="stylesheet">
   <link href="{{$base_url}}/assets/css/animate.min.css" rel="stylesheet">
 
   <!-- Custom styling plus plugins -->

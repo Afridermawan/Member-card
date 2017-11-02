@@ -48,8 +48,8 @@ class UserPinController extends Controller
 
 		return $this->view->render($response, 'backend/admin/user/pin', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/pin/",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/pin/",
             'title'     =>  "Pengguna"
         ]);
     }
@@ -107,8 +107,8 @@ class UserPinController extends Controller
 
         return $this->view->render($response, 'backend/user/user/pin', [
             'session'   =>  $session,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/web/pin/",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/web/pin/",
             'title'     =>  "Add PIN"
         ]);
     }
@@ -120,7 +120,7 @@ class UserPinController extends Controller
         try {
             $result = $this->client->request('POST', 'pin/add',[
                 'form_params' => [
-                    'user_id'          =>  $session->user_id,
+                    'user_id'          =>  $session->id,
                     'pin'              =>  $request->getParam('pin'),
                 ]
             ]);
@@ -155,8 +155,8 @@ class UserPinController extends Controller
         return $this->view->render($response, 'backend/user/user/edit-pin', [
             'data'      =>  $data->data,
             'session'   =>  $session,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/web/pin/",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/web/pin/",
             'title'     =>  "Edit PIN"
         ]);
     }
@@ -193,7 +193,7 @@ class UserPinController extends Controller
         try {
             $result = $this->client->request('POST', 'pin/check/password',[
                 'form_params' => [
-                    'user_id'          =>  $session->user_id,
+                    'user_id'          =>  $session->id,
                     'password'         =>  $request->getParam('password'),
                 ]
             ]);
@@ -202,7 +202,7 @@ class UserPinController extends Controller
         }
 
         $data = json_decode($result->getBody()->getContents());
-// dd($session->id);
+
         if ($data->error == false) {
             if (isset($_SESSION['pin'])) {
                 $this->flash->addMessage('success', $data->message);

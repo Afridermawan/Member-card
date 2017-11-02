@@ -51,16 +51,16 @@ class ProdukController extends Controller
         if ($session->role_id == 1) {
     		return $this->view->render($response, 'backend/admin/produk/index', [
                 'data'      => $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/admin/produk/",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/admin/produk/",
                 'title'     =>  "Produk",
                 'messages'  =>  $messages
             ]);
         } else {
             return $this->view->render($response, 'backend/user/produk/index', [
                 'data'      => $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/web/produk/",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/produk/",
                 'title'     =>  "Produk",
                 'messages'  =>  $messages
             ]);
@@ -146,8 +146,8 @@ class ProdukController extends Controller
 
         return $this->view->render($response, 'backend/admin/produk/penjualan', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/list/items",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/list/items",
             'title'     =>  "Produk"
         ]);
     }
@@ -181,7 +181,7 @@ class ProdukController extends Controller
     public function getAddProduk($request, $response)
     {
         return $this->view->render($response, 'backend/admin/produk/add', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Produk"
         ]);
     }
@@ -246,7 +246,7 @@ class ProdukController extends Controller
 
         return $this->view->render($response, 'backend/admin/produk/edit', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Produk"
         ]);
     }
@@ -312,7 +312,7 @@ class ProdukController extends Controller
 
         return $this->view->render($response, 'backend/user/produk/penjualan', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Beli Produk",
             'messages'  =>  $messages
         ]);
@@ -353,7 +353,7 @@ class ProdukController extends Controller
 
         return $this->view->render($response, 'backend/user/produk/detail-penjualan', [
             'produk'      =>  $produk,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Detail Pembelian",
             'messages'  =>  $messages
         ]);
@@ -365,7 +365,7 @@ class ProdukController extends Controller
 
         return $this->view->render($response, 'backend/user/produk/bayar', [
             'produk'      => $produk,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Bayar",
             'messages'  =>  $messages
         ]);

@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $messages = $this->flash->getMessages();
 		return $this->view->render($response, '/backend/admin/home', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Home",
             'messages'  =>  $messages
         ]);
@@ -28,7 +28,7 @@ class HomeController extends Controller
 
         $messages = $this->flash->getMessages();
         return $this->view->render($response, '/backend/user/home', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Home",
             'messages'  =>  $messages,
             'session'   =>  $session,
@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
         $messages = $this->flash->getMessages();
         return $this->view->render($response, '/errors/404', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Halaman tidak ditemukan",
             'messages'  =>  $messages
         ]);

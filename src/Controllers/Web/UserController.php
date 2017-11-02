@@ -51,8 +51,8 @@ class UserController extends Controller
 
 		return $this->view->render($response, 'backend/admin/user/index', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/user/",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/user/",
             'title'     =>  "Pengguna",
             'messages'  =>  $messages
         ]);
@@ -103,7 +103,7 @@ class UserController extends Controller
     public function getAddUser($request, $response)
     {
         return $this->view->render($response, 'backend/user/auth/register', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Register"
         ]);
     }
@@ -141,7 +141,7 @@ class UserController extends Controller
         $data = $user->where('id', $args['id'])->first();
         return $this->view->render($response, 'backend/admin/user/edit', [
             'data'      =>  $data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Pengguna"
         ]);
     }
@@ -210,7 +210,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/admin/auth/login', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Login Admin",
             'messages'  =>  $messages
         ]);
@@ -268,7 +268,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/user/auth/login', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Login",
             'messages'  =>  $messages
         ]);
@@ -313,7 +313,7 @@ class UserController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/user/auth/verification', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Lupa Password",
             'messages'  =>  $messages
         ]);
@@ -381,7 +381,7 @@ class UserController extends Controller
             return  $this->view->render($response, 'backend/user/auth/reset-password',[
                 'data'      =>  $data->data,
                 'title'     =>  'Reset Password',
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
+                'base_url'  =>  "http://localhost:8000",
                 'messages'  =>  $messages
             ]);
 
@@ -422,12 +422,25 @@ class UserController extends Controller
         $data = json_decode($result->getBody()->getContents());
         $_SESSION['pin'] = $data->data->pin;
 
+        try {
+            $result = $this->client_deposit->request('POST', 'deposit/saldo', [
+                'form_params' => [
+                    'email' =>  $session->email
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            $result = $e->getResponse();
+        }
+
+        $saldo = json_decode($result->getBody()->getContents());
+
         return $this->view->render($response, 'backend/user/user/detail', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Profile",
             'messages'  =>  $messages,
             'session'   =>  $session,
             'pin'       =>  $_SESSION['pin'],
+            'saldo'     =>  $saldo,
         ]);
     }
 
@@ -437,7 +450,7 @@ class UserController extends Controller
         $session = $_SESSION['login'];
 
         return $this->view->render($response, 'backend/user/user/edit', [
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Edit Profile",
             'messages'  =>  $messages,
             'session'   =>  $session

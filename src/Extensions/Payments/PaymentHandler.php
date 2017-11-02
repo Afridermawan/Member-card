@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Extension\Payments;
 
@@ -13,7 +13,7 @@ class PaymentHandler
         $this->log = $container['logger'];
     }
 
-    private function setMessageLog($order_id, $status) 
+    private function setMessageLog($order_id, $status)
     {
         if ($status == 'settlement') {
             $message = 'success';

@@ -10,12 +10,7 @@
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">{{ $data->title }}</span>
-            @foreach($data->tags as $tag)
-          <div class="chip">
-            {{ $tag->tag }}
-          </div>
-            @endforeach
-          <p>{!! $data->content !!} 
+          <p>{!! $data->content !!}
           </p>
       </div>
     </div>
@@ -34,7 +29,7 @@
   </div>
 @endforeach
 
-<div class="container"> 
+<div class="container">
     <div class="row">
       <div class="input-field col s12">
       <form action="{{ $base_url }}/web/article/{{ $data->id }}/comment" method="post">

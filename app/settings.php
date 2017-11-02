@@ -39,9 +39,18 @@ return [
            'base_uri' => 'http://localhost/Member-Card/public/api/',
            'headers' => [
             //    'key' => @$_ENV['REPORTING_API_KEY'],
-               'Accept' => 'application/json',
-               'Content-Type' => 'application/json',
-               'Authorization' => @$_SESSION['key']
+               'Accept'         => 'application/json',
+               'Content-Type'   => 'application/json',
+               'Authorization'  => @$_SESSION['key']
+           ],
+      ],
+
+      'deposit' => [
+           'base_uri' => 'http://deposit.mlogg.com/api/',
+           'headers' => [
+               'Accept'         => 'application/json',
+               'Content-Type'   => 'application/json',
+               'Authorization'  => 'a70b2d2ef78255eac4512849d1f2640e22cce5b7a19acd80715d1af28b6349c82d71eafd61322486379e9faa0abca2c7ae3cfb6381efc6b8bc09bbc80b2523bb'
            ],
       ],
 

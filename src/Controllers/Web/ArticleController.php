@@ -9,9 +9,6 @@ use GuzzleHttp\Exception\BadResponseException as GuzzleException;
 */
 class ArticleController extends Controller
 {
-    /**
-    * Sample handler
-    */
     public function getArticle($request, $response)
     {
         try {
@@ -51,16 +48,16 @@ class ArticleController extends Controller
         if ($session->role_id == 1) {
             return $this->view->render($response, 'backend/admin/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/admin/article/",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/admin/article/",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
             ]);
         } else {
             return $this->view->render($response, 'backend/user/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/web/article/",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/article/",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
             ]);
@@ -104,8 +101,8 @@ class ArticleController extends Controller
         $messages = $this->flash->getMessages();
         return $this->view->render($response, 'backend/user/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -124,8 +121,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/user/article/detail', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/article",
                 'title'     =>  "Read Artikel",
                 'messages'  =>  $messages
         ]);
@@ -144,19 +141,19 @@ class ArticleController extends Controller
 
         try {
             $result = $this->client->request('GET', 'article/comment/'.$args['id']);
+            $comment = json_decode($result->getBody()->getContents());
         } catch (GuzzleException $e) {
             $result = $e->getResponse();
+            $comment = json_decode($result->getBody()->getContents());
         }
-
-        $comment = json_decode($result->getBody()->getContents());
 
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/user/article/detail', [
                 'data'      =>  $data->data,
                 'comment'   =>  $comment->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/article",
                 'title'     =>  "Read Artikel",
                 'messages'  =>  $messages
         ]);
@@ -175,8 +172,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, '/backend/admin/article/index', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/article",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/article",
             'title'     =>  "Artikel"
         ]);
     }
@@ -194,8 +191,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, '/backend/admin/article/category', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/category/article",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/category/article",
             'title'     =>  "Category"
         ]);
     }
@@ -237,8 +234,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/user/article/index', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/web/article",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -273,8 +270,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/user/article/detail', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/web/article",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/web/article",
             'title'     =>  "Artikel",
             'messages'  =>  $messages
         ]);
@@ -293,8 +290,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/admin/article/replay-comment', [
             'comment'   =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/article/",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/article/",
             'title'     =>  "Artikel",
             'messages'  =>  $messages
         ]);
@@ -351,8 +348,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, '/backend/admin/article/comment', [
             'data'      =>  $data->data,
-            'base_url'  =>  "https://8de60e5a.ngrok.io",
-            'link'      =>  "https://8de60e5a.ngrok.io/admin/article/",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/article/",
             'title'     =>  "Comments"
         ]);
     }
@@ -362,8 +359,8 @@ class ArticleController extends Controller
         $messages = $this->flash->getMessages();
 
         return $this->view->render($response, 'backend/admin/article/add', [
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/admin/article",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/admin/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
@@ -418,8 +415,8 @@ class ArticleController extends Controller
 
         return $this->view->render($response, 'backend/admin/article/edit', [
                 'data'      =>  $data->data,
-                'base_url'  =>  "https://8de60e5a.ngrok.io",
-                'link'      =>  "https://8de60e5a.ngrok.io/admin/article",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/admin/article",
                 'title'     =>  "Artikel",
                 'messages'  =>  $messages
         ]);
