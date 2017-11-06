@@ -13,7 +13,7 @@ class UserTransformer extends TransformerAbstract
     {
         return [
             'id'                => $user->id,
-            'name'              => (string)$user->title ?: null,
+            'name'              => (string)$user->name ?: null,
             'username'          => $user->username,
             'password'          => $user->password,
             'gender'            => (string)$user->gender ?: null,

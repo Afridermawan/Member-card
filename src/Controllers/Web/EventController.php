@@ -50,18 +50,20 @@ class EventController extends Controller
         if ($session->role_id == 1) {
     		return $this->view->render($response, 'backend/admin/event/index', [
                 'data'      => $data->data,
-                'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
-                'link'      =>  "http://firzilmit.mlopp.com/member-card/public/admin/event/",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/admin/event/",
                 'title'     =>  "Event",
-                'messages'  =>  $messages
+                'messages'  =>  $messages,
+                'session'   =>  $session
             ]);
         } else {
             return $this->view->render($response, 'backend/user/event/index', [
                 'data'      => $data->data,
-                'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
-                'link'      =>  "http://firzilmit.mlopp.com/member-card/public/web/event/",
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/web/event/",
                 'title'     =>  "Event",
-                'messages'  =>  $messages
+                'messages'  =>  $messages,
+                'session'   =>  $session
             ]);
         }
     }
@@ -145,8 +147,8 @@ class EventController extends Controller
         $messages = $this->flash->getMessages();
         return $this->view->render($response, 'backend/admin/event/penjualan', [
             'data'      => $data->data,
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
-            'link'      =>  "http://firzilmit.mlopp.com/member-card/public/admin/event/list/items",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/event/list/items",
             'title'     =>  "Event",
             'messages'  =>  $messages
         ]);
@@ -181,8 +183,8 @@ class EventController extends Controller
     public function getAddEvent($request, $response)
     {
         return $this->view->render($response, 'backend/admin/event/add', [
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
-            'link'      =>  "http://firzilmit.mlopp.com/member-card/public/admin/event/list/items",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/event/list/items",
             'title'     =>  "Event"
         ]);
     }
@@ -234,13 +236,68 @@ class EventController extends Controller
         }
     }
 
+    public function getAddEventUser($request, $response)
+    {
+        return $this->view->render($response, 'backend/user/event/add', [
+            'base_url'  =>  "http://localhost:8000",
+            'title'     =>  "Tambah Event"
+        ]);
+    }
+
+    public function addEventUser($request, $response)
+    {
+        $path   = $_FILES['image']['tmp_name'];
+        $mime   = $_FILES['image']['type'];
+        $name   = $_FILES['image']['name'];
+        try {
+            $result = $this->client->request('POST', 'event/add',[
+                'multipart' => [
+                    [
+                        'name'     => 'image',
+                        'filename' => $name,
+                        'Mime-Type'=> $mime,
+                        'contents' => fopen( $path, 'r' )
+                    ],
+                    [
+                        'name'      =>  'name',
+                        'contents'  =>  $request->getParam('name'),
+                    ],
+                    [
+                        'name'      =>  'biaya_pendaftaran',
+                        'contents'  =>  $request->getParam('biaya_pendaftaran'),
+                    ],
+                    [
+                        'name'      =>  'description',
+                        'contents'  =>  $request->getParam('description'),
+                    ],
+                    [
+                        'name'      =>  'start_date',
+                        'contents'  =>  $request->getParam('start_date'),
+                    ],
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            $result = $e->getResponse();
+        }
+
+        $data = json_decode($result->getBody()->getContents());
+
+        if($data->error == true) {
+            $this->flash->addMessage('error', $data->message);
+            return $response->withRedirect($this->router->pathFor('add.event.user'));
+        } else {
+            $this->flash->addMessage('success', $data->message);
+            return $response->withRedirect($this->router->pathFor('list.event.user'));
+        }
+    }
+
     public function getEditEvent($request, $response, $args)
     {
         $event = new Event;
         $data = $event->where('id', $args['id'])->first();
         return $this->view->render($response, 'backend/admin/event/edit', [
             'data'      =>  $data,
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Event"
         ]);
     }
@@ -295,8 +352,8 @@ class EventController extends Controller
     public function getBuy($request, $response)
     {
         return $this->view->render($response, 'backend/admin/event/addBuy', [
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
-            'link'      =>  "http://firzilmit.mlopp.com/member-card/public/admin/event/list/items",
+            'base_url'  =>  "http://localhost:8000",
+            'link'      =>  "http://localhost:8000/admin/event/list/items",
             'title'     =>  "Event"
         ]);
     }
@@ -364,7 +421,7 @@ class EventController extends Controller
 
         return $this->view->render($response, 'backend/user/event/pendaftaran', [
             'data'      =>  $data->data,
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Daftar Event",
             'messages'  =>  $messages
         ]);
@@ -377,7 +434,7 @@ class EventController extends Controller
 
         return $this->view->render($response, 'backend/user/event/detail-pendaftaran', [
             'event'      =>  $event,
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Detail Pendaftaran",
             'messages'  =>  $messages
         ]);
@@ -389,7 +446,7 @@ class EventController extends Controller
 
         return $this->view->render($response, 'backend/user/event/bayar', [
             'produk'      => $produk,
-            'base_url'  =>  "http://firzilmit.mlopp.com/member-card/public",
+            'base_url'  =>  "http://localhost:8000",
             'title'     =>  "Bayar",
             'messages'  =>  $messages
         ]);

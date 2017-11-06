@@ -3,7 +3,7 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 @endsection
-@section('content') 
+@section('content')
     <div class="">
 
       <div class="page-title">

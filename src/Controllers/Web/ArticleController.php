@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controllers\Web;
 
 use GuzzleHttp\Exception\BadResponseException as GuzzleException;
@@ -51,7 +50,8 @@ class ArticleController extends Controller
                 'base_url'  =>  "http://localhost:8000",
                 'link'      =>  "http://localhost:8000/admin/article/",
                 'title'     =>  "Artikel",
-                'messages'  =>  $messages
+                'messages'  =>  $messages,
+                'session'   =>  $session,
             ]);
         } else {
             return $this->view->render($response, 'backend/user/article/index', [
@@ -59,7 +59,8 @@ class ArticleController extends Controller
                 'base_url'  =>  "http://localhost:8000",
                 'link'      =>  "http://localhost:8000/web/article/",
                 'title'     =>  "Artikel",
-                'messages'  =>  $messages
+                'messages'  =>  $messages,
+                'session'   =>  $session,
             ]);
         }
     }
@@ -398,6 +399,53 @@ class ArticleController extends Controller
         } else {
             $this->flash->addMessage('success', $data->message);
             return $response->withRedirect($this->router->pathFor('list.article'));
+        }
+    }
+
+    public function getPostArticleByuser($request, $response, $args)
+    {
+        $messages = $this->flash->getMessages();
+
+        return $this->view->render($response, 'backend/user/article/add', [
+                'base_url'  =>  "http://localhost:8000",
+                'link'      =>  "http://localhost:8000/user/article",
+                'title'     =>  "Tambah Artikel",
+                'messages'  =>  $messages
+        ]);
+    }
+
+    public function postArticleByUser($request, $response, $args)
+    {
+        $path   = $_FILES['thumbnail']['tmp_name'];
+        $mime   = $_FILES['thumbnail']['type'];
+        $name   = $_FILES['thumbnail']['name'];
+        try {
+            $result = $this->client->request('POST', 'article',[
+                'multipart' => [
+                    [
+                        'name'     => 'thumbnail',
+                        'filename' => $name,
+                        'Mime-Type'=> $mime,
+                        'contents' => fopen( $path, 'r' )
+                    ],
+                ],
+                'query' => [
+                    'title'     =>  $request->getParam('title'),
+                    'content'   =>  $request->getParam('content'),
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            $result = $e->getResponse();
+        }
+
+        $data = json_decode($result->getBody()->getContents());
+
+        if($data->error == true) {
+            $this->flash->addMessage('error', $data->message);
+            return $response->withRedirect($this->router->pathFor('add.article.user'));
+        } else {
+            $this->flash->addMessage('success', $data->message);
+            return $response->withRedirect($this->router->pathFor('list.article.user'));
         }
     }
 

@@ -193,7 +193,7 @@ class UserPinController extends Controller
         try {
             $result = $this->client->request('POST', 'pin/check/password',[
                 'form_params' => [
-                    'user_id'          =>  $session->id,
+                    'user_id'          =>  $session->user_id,
                     'password'         =>  $request->getParam('password'),
                 ]
             ]);

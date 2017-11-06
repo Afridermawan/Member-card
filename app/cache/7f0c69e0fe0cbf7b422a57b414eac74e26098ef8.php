@@ -10,8 +10,6 @@
 
   <!-- Bootstrap core CSS -->
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
-
   <link rel="shortcut icon" type="image/png" href="<?php echo e($base_url); ?>/assets/img/card.png">
   <link href="<?php echo e($base_url); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
 

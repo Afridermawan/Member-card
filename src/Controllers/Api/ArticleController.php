@@ -18,8 +18,9 @@ use League\Fractal\Resource\Item;
 use League\Fractal\Serializer\DataArraySerializer;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\ArraySerializer;
-use League\Fractal\Pagination\IlluminatePaginatorAdapter; 
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Cocur\Slugify\Slugify;
+use App\Models\Request;
 
 class ArticleController extends Controller
 {
@@ -50,7 +51,7 @@ class ArticleController extends Controller
 
             else :
 
-                $resource = new Collection($getArticle, new ArticleTransformer); 
+                $resource = new Collection($getArticle, new ArticleTransformer);
                 $data = $fractal->createData($resource)->toArray();
 
                 $data = $this->responseDetail(200, false, 'Data tersedia', [
@@ -553,14 +554,6 @@ class ArticleController extends Controller
 
     public function putArticle($request, $response, $args)
     {
-
-        // $slugify = new Slugify();
-        // $title = $insert['title'];
-        // var_dump($id_category);
-        // var_dump($insert['title']);
-        // var_dump($slugify->slugify($title). '-' . strtolower(str_random(8)));
-        // var_dump($insert['content']);
-        // var_dump($thumbnailName);die;
         $insert = $request->getParsedBody();
           $rules = [
             'required' => [

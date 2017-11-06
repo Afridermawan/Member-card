@@ -4,6 +4,29 @@
 
 <div class="container">
   <div class="row">
+    <nav style="border-radius: 25px;margin-top: 20px">
+      <div class="nav-wrapper">
+        <div class="col s12">
+            <span style="font-family:  Tibetan Machine Uni, sans-serif;font-size: 25px;">Member-Card  &nbsp</span>
+            <span style="font-family:  Trebuchet, sans-serif;font-size: 20px;"> {{ $title }}</span>
+            @if (!$session->hak_akses)
+                <span class="pull-right">
+                    <a href="{{ $base_url }}/web/request/send"><i class="material-icons">mode_edit</i></a>
+                </span>
+            @else
+                <span class="pull-right">
+                    <a href="{{ $base_url }}/web/article/create/user"><i class="material-icons">mode_edit</i></a>
+                </span>
+            @endif
+        </div>
+      </div>
+    </nav>
+    <br>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
     @foreach($data->data as $datas)
     <div class="col s12 m6 hoverable">
       <div class="card">
@@ -14,7 +37,7 @@
           <a href="{{ $base_url }}/web/article/{{ $datas->id }}/detail">
             <span class="card-title activator grey-text text-darken-4">{{ $datas->title }}</span>
           </a>
-            <p>{!! substr($datas->content,0, 300) !!} 
+            <p>{!! substr($datas->content,0, 300) !!}
                 <a href="{{ $base_url }}/web/article/{{ $datas->id }}/detail">Readmore...</a>
             </p>
         </div>

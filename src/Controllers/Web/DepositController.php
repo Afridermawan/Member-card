@@ -98,13 +98,6 @@ class DepositController extends Controller
 
     public function kredit($request, $response)
     {
-        // var_dump($request->getParam('username'));
-        // var_dump($request->getParam('email'));
-        // var_dump($request->getParam('phone'));
-        // var_dump($request->getParam('payment_methode'));
-        // var_dump($request->getParam('total'));
-        // var_dump($request->getParam('description'));die;
-
         try {
             $result = $this->client_deposit->request('POST', 'customer/deposit', [
                 'form_params' => [

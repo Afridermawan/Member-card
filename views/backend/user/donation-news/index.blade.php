@@ -1,6 +1,27 @@
 @extends('backend.user.templates.default')
 
 @section('content')
+    
+<div class="container">
+  <div class="row">
+    <nav style="border-radius: 25px;margin-top: 20px">
+      <div class="nav-wrapper">
+        <div class="col s12">
+            <span style="font-family:  Tibetan Machine Uni, sans-serif;font-size: 25px;">Member-Card  &nbsp</span>
+            <span style="font-family:  Trebuchet, sans-serif;font-size: 20px;"> {{ $title }}</span>
+            @if ($title == Home)
+
+            @else
+            <span class="pull-right">
+                <a href="{{ $base_url }}/web/request/send"><i class="material-icons">mode_edit</i></a>
+            </span>
+            @endif
+        </div>
+      </div>
+    </nav>
+    <br>
+  </div>
+</div>
 
   <div class="container">
     <div class="row">
@@ -12,7 +33,7 @@
             <span class="card-title"></span>
           </div>
           <div class="card-content" style="">
-            <p>{!! substr($datas->content,0, 300) !!} 
+            <p>{!! substr($datas->content,0, 300) !!}
               <a href="{{ $base_url }}/web/donation-news/{{ $datas->id }}">Readmore...</a>
             </p>
           </div>

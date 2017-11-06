@@ -19,7 +19,7 @@
           <div class="clearfix"></div>
 
           <!-- sidebar menu -->
-          @include('templates.partials.sidebar') 
+          @include('templates.partials.sidebar')
         </div>
       </div>
 

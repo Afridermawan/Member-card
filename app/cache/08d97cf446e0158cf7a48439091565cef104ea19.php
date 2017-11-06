@@ -36,12 +36,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    $key = $data->meta->pagination->current_page;
-                    ?>
-                    <?php $__currentLoopData = $data->data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $data->data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $datas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td> <?php echo e($key++); ?></td>
+                            <td> <?php echo e($key+1); ?></td>
                             <td> <?php echo e($datas->username); ?> </td>
                             <td> <?php echo e($datas->email); ?> </td>
                             <td> <?php echo e($datas->phone); ?> </td>
@@ -54,7 +51,7 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </tbody>
                 </table>
-                
+
             <?php if(isset($data->meta->pagination)): ?>
                 <?php
                 $page = $data->meta->pagination;

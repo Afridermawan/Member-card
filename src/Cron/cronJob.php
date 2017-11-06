@@ -44,36 +44,5 @@ class CronJob
             }
         }
     }
-    //Item Recurring
-    public function itemReappear()
-    {
-        $item = new Item($this->db);
-        $reportedItem = new ReportedItem($this->db);
-        $expired = $item->expired();
-        $data['status'] = 0;
-        foreach ($expired as $val) {
-            switch ($val['recurrent']) {
-                case "harian":
-                $data['end_date'] = date('Y-m-d', strtotime($val['end_date']. '+1 day'));
-                break;
-                case "mingguan":
-                $data['end_date'] = date('Y-m-d', strtotime($val['end_date']. '+1 week'));
-                break;
-                case "bulanan":
-                $data['end_date'] = date('Y-m-d', strtotime($val['end_date']. '+1 month'));
-                break;
-                case "tahunan":
-                $data['end_date'] = date('Y-m-d', strtotime($val['end_date']. '+1 year'));
-                break;
-                default:
-                $data['end_date'] = '';
-            }
-            $item->updateData($data, $val['id']);
-            $reported = $reportedItem->find('item_id', $val['id']);
-            if ($reported) {
-                $reportedItem->hardDelete($reported['id']);
-            }
-        }
-    }
 }
 ?>

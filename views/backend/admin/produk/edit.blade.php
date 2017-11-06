@@ -61,14 +61,14 @@
                         <span class="help-block"></span>
                 </div>
 
-                <div class="form-group has-feedback">
+                {{-- <div class="form-group has-feedback">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-stok">Stok <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input type="number" name="stok" id="first-stok" required="required" class="form-control col-md-7 col-xs-12" value="{{$data->stok}}" placeholder="Stok">
                   </div>
                         <span class="help-block"></span>
-                </div>
+                </div> --}}
 
                 <div class="ln_solid"></div>
                 <div class="form-group">

@@ -228,7 +228,7 @@ class UserPinController extends Controller
     {
         $users = new User;
         $id = Token::where('token', $request->getHeader('Authorization')[0])->first();
-        $user = User::where('user_id', $id->user_id)->first();
+        $user = User::where('id', $id->user_id)->first();
 
         if (empty($user)) {
             $data = $this->responseDetail(400, true, 'User tidak terdaftar');

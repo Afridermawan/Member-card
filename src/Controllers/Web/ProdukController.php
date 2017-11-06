@@ -1,13 +1,9 @@
 <?php
-
 namespace App\Controllers\Web;
 
 use GuzzleHttp\Exception\BadResponseException as GuzzleException;
 use  App\Models\Produk;
 
-/**
-*
-*/
 class ProdukController extends Controller
 {
     /**
@@ -54,7 +50,8 @@ class ProdukController extends Controller
                 'base_url'  =>  "http://localhost:8000",
                 'link'      =>  "http://localhost:8000/admin/produk/",
                 'title'     =>  "Produk",
-                'messages'  =>  $messages
+                'messages'  =>  $messages,
+                'session'   =>  $session
             ]);
         } else {
             return $this->view->render($response, 'backend/user/produk/index', [
@@ -62,7 +59,8 @@ class ProdukController extends Controller
                 'base_url'  =>  "http://localhost:8000",
                 'link'      =>  "http://localhost:8000/web/produk/",
                 'title'     =>  "Produk",
-                'messages'  =>  $messages
+                'messages'  =>  $messages,
+                'session'   =>  $session
             ]);
         }
     }
@@ -212,10 +210,6 @@ class ProdukController extends Controller
                         'name'      =>  'description',
                         'contents'  =>  $request->getParam('description'),
                     ],
-                    [
-                        'name'      =>  'stok',
-                        'contents'  =>  $request->getParam('stok'),
-                    ],
                 ]
             ]);
         } catch (GuzzleException $e) {
@@ -230,6 +224,60 @@ class ProdukController extends Controller
         } else {
             $this->flash->addMessage('success', $data->message);
             return $response->withRedirect($this->router->pathFor('list.produk'));
+        }
+    }
+
+    public function getAddProdukUser($request, $response)
+    {
+        $session = $_SESSION['login'];
+        return $this->view->render($response, 'backend/user/produk/add', [
+            'base_url'  =>  "http://localhost:8000",
+            'title'     =>  "Tambah Produk",
+            'session'   =>  $session
+        ]);
+    }
+
+    public function addProdukUser($request, $response)
+    {
+        $path   = $_FILES['image']['tmp_name'];
+        $mime   = $_FILES['image']['type'];
+        $name   = $_FILES['image']['name'];
+
+        try {
+            $result = $this->client->request('POST', 'produk/add',[
+                'multipart' => [
+                    [
+                        'name'     => 'image',
+                        'filename' => $name,
+                        'Mime-Type'=> $mime,
+                        'contents' => fopen( $path, 'r' )
+                    ],
+                    [
+                        'name'      =>  'name',
+                        'contents'  =>  $request->getParam('name'),
+                    ],
+                    [
+                        'name'      =>  'harga',
+                        'contents'  =>  $request->getParam('harga'),
+                    ],
+                    [
+                        'name'      =>  'description',
+                        'contents'  =>  $request->getParam('description'),
+                    ],
+                ]
+            ]);
+        } catch (GuzzleException $e) {
+            $result = $e->getResponse();
+        }
+
+        $data = json_decode($result->getBody()->getContents());
+
+        if($data->error == true) {
+            $this->flash->addMessage('error', $data->message);
+            return $response->withRedirect($this->router->pathFor('add.produk.user'));
+        } else {
+            $this->flash->addMessage('success', $data->message);
+            return $response->withRedirect($this->router->pathFor('list.produk.user'));
         }
     }
 

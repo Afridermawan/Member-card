@@ -7,7 +7,7 @@
 
  </head>
 
-  <body style="background: #fafafa"> 
+  <body style="background: #fafafa">
 
         @include('backend.user.templates.partials.navbar')
 
@@ -16,21 +16,7 @@
             <div class="col-lg-8">
     			@include('backend.user.templates.partials.alerts')
                 <div class="container-fluid">
-                <div class="container">
-                  <div class="row">
-                    <nav style="border-radius: 25px;margin-top: 20px">
-                      <div class="nav-wrapper">
-                        <div class="col s12">
-                          <span style="font-family:  Tibetan Machine Uni, sans-serif;font-size: 25px;">Member-Card  &nbsp</span>
-                          <span style="font-family:  Trebuchet, sans-serif;font-size: 20px;"> {{ $title }}</span>
-                        </div>
-                      </div>
-                    </nav>
-                    <br>
-                  </div>
-                </div>
     				@yield('content')
-
                 </div>
             </div>
         </div>
@@ -41,5 +27,5 @@
 
   </body>
     @include('backend.user.templates.partials.footer')
-  
+
 </html>

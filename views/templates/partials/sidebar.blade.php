@@ -28,5 +28,10 @@
             <li><a href="{{$base_url}}/admin/pin/list"> Daftar PIN </a></li>
           </ul>
         </li>
+        <li><a><i class="fa fa-circle-o"></i> Request <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu" style="display: none">
+            <li><a href="{{$base_url}}/admin/request/list"> Daftar Request </a></li>
+          </ul>
+        </li>
     </div>
 </div>

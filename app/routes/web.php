@@ -81,6 +81,12 @@ $app->group('', function () use ($app, $container){
             $app->post('/{id}/edit', 'App\Controllers\Web\DonationNewsController:putDonationNews')
                 ->setName('edit.donasi');
         });
+        $app->group('/request', function () use ($app, $container){
+            $app->get('/{id}/approve', 'App\Controllers\Web\RequestController:approveRequest');
+            $app->get('/list', 'App\Controllers\Web\RequestController:index')->setName('list.request');
+            $app->get('/notif', 'App\Controllers\Web\RequestController:notif')->setName('notif.request');
+            $app->get('/{id}/delete', 'App\Controllers\Web\RequestController:delete');
+        });
     });
 })->add(new \App\Middlewares\AdminMiddleware($container));
 
@@ -100,6 +106,10 @@ $app->group('', function () use ($app, $container){
     $app->group('/web', function () use ($app, $container){
         $app->get('/home', 'App\Controllers\Web\HomeController:home')->setName('home.user');
         $app->get('/logout', 'App\Controllers\Web\UserController:logout');
+        $app->get('/article/create/user', 'App\Controllers\Web\ArticleController:getPostArticleByuser')
+            ->setName('add.article.user');
+        $app->post('/article/create/user', 'App\Controllers\Web\ArticleController:postArticleByuser')
+            ->setName('add.article.user');
         $app->get('/article', 'App\Controllers\Web\ArticleController:getArticle')->setName('list.article.user');
         $app->get('/article/{slug}', 'App\Controllers\Web\ArticleController:getArticleDetailSlug');
         $app->get('/article/{id}/detail', 'App\Controllers\Web\ArticleController:getArticleDetailId')
@@ -118,7 +128,7 @@ $app->group('', function () use ($app, $container){
             $app->post('/change/image', 'App\Controllers\Web\UserController:postImage');
         });
         $app->group('/produk', function () use ($app, $container){
-            $app->get('/list', 'App\Controllers\Web\ProdukController:getProduk')->setName('list.produk');
+            $app->get('/list', 'App\Controllers\Web\ProdukController:getProduk')->setName('list.produk.user');
             $app->get('/{slug}/detail', 'App\Controllers\Web\ProdukController:getProdukDetailSlug');
             $app->get('/{id}/find', 'App\Controllers\Web\ProdukController:getProdukDetailId');
             $app->get('/{id}/buy', 'App\Controllers\Web\ProdukController:getBuyProduk')->setName('beli.produk');
@@ -128,9 +138,12 @@ $app->group('', function () use ($app, $container){
             $app->get('/{id}/list/items', 'App\Controllers\Web\ProdukController:findItems')->setName('detail.pembelian.produk');
             $app->post('/{id}/edit/buy', 'App\Controllers\Web\ProdukController:editBuy')
                 ->setName('edit.pembelian.produk');
+            $app->get('/user/add', 'App\Controllers\Web\ProdukController:getAddProdukUser');
+            $app->post('/user/add', 'App\Controllers\Web\ProdukController:addProdukUser')->setName('add.produk.user');
+
         });
         $app->group('/event', function () use ($app, $container){
-            $app->get('/list', 'App\Controllers\Web\EventController:getEvent')->setName('list.event');
+            $app->get('/list', 'App\Controllers\Web\EventController:getEvent')->setName('list.event.user');
             $app->get('/{slug}/detail', 'App\Controllers\Web\EventController:getEventDetailSlug');
             $app->get('/{id}/find', 'App\Controllers\Web\EventController:getEventDetailId');
             $app->get('/{id}/buy', 'App\Controllers\Web\EventController:getBuyEvent')->setName('buy.event');
@@ -140,6 +153,8 @@ $app->group('', function () use ($app, $container){
             $app->get('/{id}/list/items', 'App\Controllers\Web\EventController:findItems')->setName('detail.daftar.event');
             $app->post('/{id}/edit/buy', 'App\Controllers\Web\EventController:editBuy')
                 ->setName('edit.pembelian.event');
+            $app->get('/add/user', 'App\Controllers\Web\EventController:getAddEventUser');
+            $app->post('/add/user', 'App\Controllers\Web\EventController:addEventUser')->setName('add.event.user');
         });
         $app->group('/pin', function () use ($app, $container){
             $app->get('/list', 'App\Controllers\Web\UserPinController:getPin')->setName('list.pin');
@@ -167,6 +182,9 @@ $app->group('', function () use ($app, $container){
             $app->get('/debit/{id}', 'App\Controllers\Web\DepositController:historyById')->setName('history.debit.id');
             $app->get('/history/debit', 'App\Controllers\Web\DepositController:history')->setName('history.debit');
             $app->get('/payment-method', 'App\Controllers\Web\DepositController:paymentMethod')->setName('payment-method');
+        });
+        $app->group('/request', function () use ($app, $container){
+            $app->get('/send', 'App\Controllers\Web\RequestController:sendRequest');
         });
     });
 })->add(new \App\Middlewares\AuthMiddleware($container));

@@ -4,14 +4,35 @@
 
     <style>
     table {
-        padding: 10px 40px; 
+        padding: 10px 40px;
         background: #EEEEEE;
         width: 300px;
         border-radius: 25px;
         box-shadow: 2px 2px 4px #000000;
     }
-    </style>   
-    
+    </style>
+
+<div class="container">
+  <div class="row">
+    <nav style="border-radius: 25px;margin-top: 20px">
+      <div class="nav-wrapper">
+        <div class="col s12">
+            <span style="font-family:  Tibetan Machine Uni, sans-serif;font-size: 25px;">Member-Card  &nbsp</span>
+            <span style="font-family:  Trebuchet, sans-serif;font-size: 20px;"> {{ $title }}</span>
+            @if ($title == Home)
+
+            @else
+            <span class="pull-right">
+                <a href="{{ $base_url }}/web/request/send"><i class="material-icons">mode_edit</i></a>
+            </span>
+            @endif
+        </div>
+      </div>
+    </nav>
+    <br>
+  </div>
+</div>
+
 <div class="container">
     <div class="row">
         <table style="margin: 0 auto;">
@@ -33,16 +54,16 @@
                 <td>
                     <span style="font-family: Arial, Trebuchet , Trebuchet, sans-serif;font-size: 15px;">
                         <b>
-                        
+
                             {{ $session->username }}<br><br>
                             {{ $session->phone }}<br><br>
-                            {{ $session->email }}<br> 
+                            {{ $session->email }}<br>
                         </b>
                     </span>
                 </td>
                 <td>
-                    <img src="{{ $session->code }}" 
-                    style="width: 200px;height: 200px"> 
+                    <img src="{{ $session->code }}"
+                    style="width: 200px;height: 200px">
                 </td>
             </tr>
         </table>
@@ -52,7 +73,7 @@
             <a href="{{ $base_url }}/web/event/list"><i title="Event" class="large material-icons hoverable">event</i></a>
             <a href="{{ $base_url }}/web/donation-news/list""><i title="Berita Donasi" class="large material-icons hoverable">people_outline</i></a>
         </div>
-        <style> 
+        <style>
         .icons i{
             background: #fff;
             padding: 12px;

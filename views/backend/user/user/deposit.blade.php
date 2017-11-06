@@ -8,7 +8,7 @@
 </script>
 @endsection
 @section('content')
-{{-- {{ dd($payment_method->data[0]->id) }} --}}
+
 <div class="container">
   <div class="row">
     <form class="col s12" action="{{ $base_url }}/web/deposit/kredit" method="post">

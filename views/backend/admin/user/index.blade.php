@@ -38,12 +38,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @php
-                    $key = $data->meta->pagination->current_page;
-                    @endphp
-                    @foreach($data->data as $datas)
+                    @foreach($data->data as $key => $datas)
                         <tr>
-                            <td> {{ $key++ }}</td>
+                            <td> {{ $key+1 }}</td>
                             <td> {{ $datas->username }} </td>
                             <td> {{ $datas->email }} </td>
                             <td> {{ $datas->phone }} </td>
@@ -56,7 +53,7 @@
                     @endforeach
                   </tbody>
                 </table>
-                
+
             @if (isset($data->meta->pagination))
                 <?php
                 $page = $data->meta->pagination;

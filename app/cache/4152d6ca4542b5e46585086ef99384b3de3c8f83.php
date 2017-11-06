@@ -2,6 +2,29 @@
 
 <div class="container">
   <div class="row">
+    <nav style="border-radius: 25px;margin-top: 20px">
+      <div class="nav-wrapper">
+        <div class="col s12">
+            <span style="font-family:  Tibetan Machine Uni, sans-serif;font-size: 25px;">Member-Card  &nbsp</span>
+            <span style="font-family:  Trebuchet, sans-serif;font-size: 20px;"> <?php echo e($title); ?></span>
+            <?php if(!$session->hak_akses): ?>
+                <span class="pull-right">
+                    <a href="<?php echo e($base_url); ?>/web/request/send"><i class="material-icons">mode_edit</i></a>
+                </span>
+            <?php else: ?>
+                <span class="pull-right">
+                    <a href="<?php echo e($base_url); ?>/web/produk/user/add"><i class="material-icons">mode_edit</i></a>
+                </span>
+            <?php endif; ?>
+        </div>
+      </div>
+    </nav>
+    <br>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
   <?php $__currentLoopData = $data->data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $datas): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <div class="card col s6 hoverable">
         <div class="card-image waves-effect waves-block waves-light">

@@ -19,7 +19,7 @@
           <div class="clearfix"></div>
 
           <!-- sidebar menu -->
-          <?php echo $__env->make('templates.partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> 
+          <?php echo $__env->make('templates.partials.sidebar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
         </div>
       </div>
 

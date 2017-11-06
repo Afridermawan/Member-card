@@ -37,12 +37,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @php
-                    $key = $data->meta->pagination->current_page;
-                    @endphp
-                    @foreach($data->data as $datas)
+                    @foreach($data->data as $key => $datas)
                         <tr>
-                            <td> {{ $key++ }}</td>
+                            <td> {{ $key+1 }}</td>
                             <td><img src="{{ $datas->image }}" style="width:70px;heigth:70px" alt="Member Card"></td>
                             <td> {{ $datas->title }} </td>
                             <td> {{ $datas->content }} </td>

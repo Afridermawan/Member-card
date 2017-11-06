@@ -192,7 +192,7 @@ class ProdukController extends Controller
                 $image->addValidations(array(
                     new \Upload\Validation\Mimetype(array('image/png', 'image/gif',
                     'image/jpg', 'image/jpeg')),
-                    new \Upload\Validation\Size('1M') 
+                    new \Upload\Validation\Size('2M')
                 ));
 
                 try {
@@ -218,7 +218,7 @@ class ProdukController extends Controller
                 $produk->description    = $insert['description'];
                 $produk->slug           = $name;
                 $produk->image          = $imageName;
-                $produk->stok           = $insert['stok'];
+                $produk->stok           = 0;
                 $produk->save();
 
                 $data = $this->responseDetail(201, false, 'Berhasil menambah data', [
@@ -295,7 +295,7 @@ class ProdukController extends Controller
                 $image->addValidations(array(
                     new \Upload\Validation\Mimetype(array('image/png', 'image/gif',
                     'image/jpg', 'image/jpeg')),
-                    new \Upload\Validation\Size('2M') 
+                    new \Upload\Validation\Size('2M')
                 ));
 
                 try {
@@ -322,7 +322,7 @@ class ProdukController extends Controller
                 $produk->slug           = $name;
                 $produk->image          = $imageName;
                 $produk->harga          = $insert['harga'];
-                $produk->stok           = $insert['stok'];
+                $produk->stok           = 0;
                 $produk->save();
 
                 $data = $this->responseDetail(200, false, 'Berhasil memperbaharui data', [

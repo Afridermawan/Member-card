@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -16,8 +15,9 @@ class Token extends Model
 
     public function joinUser()
     {
-        $data = $this->join('users', 'users.id', '=', 'tokens.user_id')
-                    ->select('tokens.user_id', 'tokens.token', 'users.*');
+        $data = User::join('tokens', 'users.id', '=', 'tokens.user_id')
+                    ->leftjoin('requests', 'users.id', '=', 'requests.user_id')
+                    ->select('tokens.user_id', 'tokens.token', 'users.*', 'requests.hak_akses')->get();
         return $data;
     }
 }

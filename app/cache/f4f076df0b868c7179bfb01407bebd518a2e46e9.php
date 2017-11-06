@@ -8,13 +8,8 @@
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4"><?php echo e($data->title); ?></span>
-            <?php $__currentLoopData = $data->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-          <div class="chip">
-            <?php echo e($tag->tag); ?>
+          <p><?php echo $data->content; ?>
 
-          </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-          <p><?php echo $data->content; ?> 
           </p>
       </div>
     </div>
@@ -34,7 +29,7 @@
   </div>
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-<div class="container"> 
+<div class="container">
     <div class="row">
       <div class="input-field col s12">
       <form action="<?php echo e($base_url); ?>/web/article/<?php echo e($data->id); ?>/comment" method="post">

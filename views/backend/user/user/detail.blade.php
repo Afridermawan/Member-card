@@ -1,14 +1,28 @@
 @extends('backend.user.templates.default')
 
 @section('content')
-{{-- {{ dd($data) }} --}}
+
+<div class="container">
+  <div class="row">
+    <nav style="border-radius: 25px;margin-top: 20px">
+      <div class="nav-wrapper">
+        <div class="col s12">
+            <span style="font-family:  Tibetan Machine Uni, sans-serif;font-size: 25px;">Member-Card  &nbsp</span>
+            <span style="font-family:  Trebuchet, sans-serif;font-size: 20px;"> {{ $title }}</span>
+        </div>
+      </div>
+    </nav>
+    <br>
+  </div>
+</div>
+
   <div class="container">
     <div class="row">
     <div class="col s12 m12">
     <div class="card horizontal">
       <div class="card-image" style="background: #EEEEEE">
-        <a class="modal-trigger" href="#modal2">
-            <img src="{{ $session->image }}" style="width: 250px;height: 350px" title="Perbaharui Foto Profile">
+        <a>
+            <img src="{{ $session->image }}" style="width: 250px;height: 350px">
         </a>
       </div>
       <div class="card-stacked">
@@ -36,18 +50,20 @@
             </div>
             </div>
           </span>
-        <div class="action">
+          <span>
+            <a href="#modal2" class="modal-trigger btn-floating btn-large waves-effect waves-light red"
+                style="position: absolute;height: 56px;margin-left: -13%;" title="Perbaharui Foto Profile">
+                <i class="material-icons">camera_alt</i>
+            </a>
+          </span>
+        <div class="card-action">
         @if(isset( $_SESSION['pin'] ))
-          <a class="modal-trigger" href="#modal3">
-              <i class="material-icons">create</i> &nbsp Edit PIN</a>
+          <a class="modal-trigger" href="#modal3">Edit PIN</a>
         @else
-          <a class="modal-trigger" href="#modal3">
-              <i class="material-icons">create</i> &nbsp Add PIN</a>
+          <a class="modal-trigger" href="#modal3">Add PIN</a>
         @endif
-          <a  href="{{ $base_url }}/web/user/edit/{{ $session->id }}/profile">
-              <i class="material-icons">settings</i>&nbsp Setting Profile</a>
-          <a class="modal-trigger" href="#modal4">
-              <i class="material-icons">attach_money</i>&nbsp Chek deposit</a>
+          <a  href="{{ $base_url }}/web/user/edit/{{ $session->id }}/profile">Setting Profile</a>
+          <a class="modal-trigger" href="#modal4">Chek deposit</a>
         </div>
       </div>
     </div>

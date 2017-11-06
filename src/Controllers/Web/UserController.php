@@ -208,13 +208,18 @@ class UserController extends Controller
     public function getLoginAsAdmin($request, $response)
     {
         $messages = $this->flash->getMessages();
-
-        return $this->view->render($response, 'backend/admin/auth/login', [
-            'base_url'  =>  "http://localhost:8000",
-            'title'     =>  "Login Admin",
-            'messages'  =>  $messages
-        ]);
+        $session = $_SESSION['login'];
+        if ($session) {
+            return $response->withRedirect($this->router->pathFor('home.admin'));
+        } else {
+            return $this->view->render($response, 'backend/admin/auth/login', [
+                'base_url'  =>  "http://localhost:8000",
+                'title'     =>  "Login Admin",
+                'messages'  =>  $messages
+            ]);
+        }
     }
+
      public function loginAsAdmin($request, $response)
     {
         try {
@@ -266,13 +271,18 @@ class UserController extends Controller
     public function getLogin($request, $response)
     {
         $messages = $this->flash->getMessages();
-
-        return $this->view->render($response, 'backend/user/auth/login', [
-            'base_url'  =>  "http://localhost:8000",
-            'title'     =>  "Login",
-            'messages'  =>  $messages
-        ]);
+        $session = $_SESSION['login'];
+        if ($session) {
+            return $response->withRedirect($this->router->pathFor('home'));
+        } else {
+            return $this->view->render($response, 'backend/user/auth/login', [
+                'base_url'  =>  "http://localhost:8000",
+                'title'     =>  "Login",
+                'messages'  =>  $messages
+            ]);
+        }
     }
+
      public function login($request, $response)
     {
         try {

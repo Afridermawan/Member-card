@@ -21,7 +21,7 @@ $app->group('/api', function () use ($app, $container){
     $app->get('/article/{id}/detail', 'App\Controllers\Api\ArticleController:getArticleDetailId');
     $app->get('/article/{id}/comment', 'App\Controllers\Api\ArticleController:getCommentId');
     $app->get('/article/comment/{id}', 'App\Controllers\Api\ArticleController:getCommentArticleId');
-    $app->post('/article/{id}/comment', 'App\Controllers\Api\ArticleController:postComment')->setName('article.comment');
+    $app->post('/article/{id}/comment', 'App\Controllers\Api\ArticleController:postComment');
     $app->get('/comment/article', 'App\Controllers\Api\ArticleController:getArticleComment');
     $app->get('/category/article', 'App\Controllers\Api\ArticleController:getCategory');
     $app->get('/category/article/{id}', 'App\Controllers\Api\ArticleController:getCategoryDetail');
@@ -34,9 +34,7 @@ $app->group('/api', function () use ($app, $container){
         $app->get('/{id}/restore', 'App\Controllers\Api\UserController:restore');
         $app->post('/{id}/edit', 'App\Controllers\Api\UserController:putUser');
         $app->post('/{id}/edit/profile', 'App\Controllers\Api\UserController:editProfile');
-        $app->post('/edit/image', 'App\Controllers\Api\FileSystemController:upload');
-        $app->post('/change/image', 'App\Controllers\Api\UserController:postImage')->setName('change.image');
-
+        $app->post('/change/image', 'App\Controllers\Api\UserController:postImage');
     });
     $app->group('/produk', function () use ($app, $container){
         $app->get('/list', 'App\Controllers\Api\ProdukController:getProduk');
@@ -82,5 +80,12 @@ $app->group('/api', function () use ($app, $container){
         $app->get('/{id}', 'App\Controllers\Api\DonationNewsController:getDonationNewsId');
         $app->get('/{id}/delete', 'App\Controllers\Api\DonationNewsController:remove');
         $app->post('/{id}/edit', 'App\Controllers\Api\DonationNewsController:putDonation');
+    });
+    $app->group('/request', function () use ($app, $container){
+        $app->get('/find', 'App\Controllers\Api\RequestController:getRequest');
+        $app->post('/send', 'App\Controllers\Api\RequestController:sendRequest');
+        $app->post('/{id}/approve', 'App\Controllers\Api\RequestController:approveRequest');
+        $app->get('/list', 'App\Controllers\Api\RequestController:index');
+        $app->get('/{id}/delete', 'App\Controllers\Api\RequestController:delete');
     });
 });
